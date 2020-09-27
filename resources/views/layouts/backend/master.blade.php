@@ -65,6 +65,8 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
+<!-- jQuery -->
+<script src="{{asset('assets/backend')}}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('assets/backend')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
@@ -99,28 +101,29 @@
 <!-- jquery-validation -->
 <script src="{{asset('assets/backend')}}/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="{{asset('assets/backend')}}/plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="{{ asset('assets/backend/dist/js/sweetalert2.all.min.js')}}"></script>
 <script src="{{ asset('assets/backend/js/toastr.min.js')}}"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js')}}"></script>
 
-{{--{!! Toastr::message() !!}--}}
-{{--<script>--}}
-{{--    $(function () {--}}
-{{--        $("#example1").DataTable({--}}
-{{--            "responsive": true,--}}
-{{--            "autoWidth": false,--}}
-{{--        });--}}
-{{--        $('#example2').DataTable({--}}
-{{--            "paging": true,--}}
-{{--            "lengthChange": false,--}}
-{{--            "searching": false,--}}
-{{--            "ordering": true,--}}
-{{--            "info": true,--}}
-{{--            "autoWidth": false,--}}
-{{--            "responsive": true,--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
+
 {!! Toastr::message() !!}
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
 @stack('js')
 </body>
 </html>

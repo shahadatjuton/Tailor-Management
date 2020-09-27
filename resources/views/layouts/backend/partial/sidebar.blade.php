@@ -1,3 +1,7 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+@endphp
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -31,24 +35,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('admin.user.list')}}" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview menu-open">
@@ -63,7 +49,13 @@
                         <li class="nav-item">
                             <a href="{{route('admin.user.list')}}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>User List</p>
+                                <p>View User List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.user.create')}}" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Create User</p>
                             </a>
                         </li>
                     </ul>

@@ -64,11 +64,10 @@
                             <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <button type="button"  class="btn btn-danger waves-effect btn-sm" onclick="deleteuser({{$user->id}})">
+                            <button type="button"  class="btn btn-danger waves-effect btn-sm" onclick="deletedata({{$user->id}})">
                                 <i class="fas fa-trash-alt"></i>
-
                             </button>
-                            <form  id="delete-user-{{$user->id}}" action="{{route('admin.user.destroy',$user->id)}}"
+                            <form  id="delete-data-{{$user->id}}" action="{{route('admin.user.destroy',$user->id)}}"
                                    method="post" style="display:none;"
                             >
                                 @csrf
@@ -98,7 +97,7 @@
 @push('js')
     <script type="text/javascript">
 
-        function deleteuser(id) {
+        function deletedata(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -110,16 +109,16 @@
 
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "You won't be able to revert this data!",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel!',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
                     event.preventDefault();
-                    document.getElementById('delete-user-' + id).submit();
+                    document.getElementById('delete-data-' + id).submit();
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel

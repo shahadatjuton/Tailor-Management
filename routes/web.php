@@ -30,9 +30,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::get('view','UserController@index')->name('user.list');
         Route::get('create','UserController@create')->name('user.create');
         Route::post('store','UserController@store')->name('user.store');
-        Route::get('edit','UserController@edit')->name('user.edit');
-        Route::get('update','UserController@update')->name('user.update');
-        Route::get('destroy','UserController@destroy')->name('user.destroy');
+        Route::get('edit/{id}','UserController@edit')->name('user.edit');
+        Route::put('update/{id}','UserController@update')->name('user.update');
+        Route::delete('destroy/{id}','UserController@destroy')->name('user.destroy');
     });
 });
 

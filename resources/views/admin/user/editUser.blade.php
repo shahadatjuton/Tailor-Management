@@ -38,36 +38,43 @@
             <div class="card">
               <div class="card-header">
                <h4>Update User</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('user.index')}}">
+                  <a class="btn btn-success btn-sm float-right " href="{{route('admin.user.list')}}">
                       <i class="fa fa-list"> User List</i>
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('user.update',$user->id)}}" method="post">
+                <form action="{{route('admin.user.update',$user->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-row">
-{{--                        <div class="form-group col-md-6">--}}
-{{--                            <label>Minimal</label>--}}
-{{--                            <select class="form-control select2" style="width: 100%;">--}}
-{{--                                <option selected="selected">Alabama</option>--}}
-{{--                                <option>Alaska</option>--}}
-{{--                                <option>California</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
                         <!-- /.form-group -->
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" value="{{$user->name}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>E-mail</label>
                             <input type="email" name="email" class="form-control" value="{{$user->email}}">
                         </div>
+                        <div class="form-group col-md-4">
+                            <label>Role</label>
+                            <select name="role" class="form-control select2" style="width: 100%;" >
+                                <option selected="selected">Select Role</option>
+                                @foreach($roles as $role)
+                                    <option>{{$role->role_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Upload Image</label>
+                            <input type="file" id="image" class="form-control" name="image">
+                        </div>
+
                         <div class="form-group col-md-4 offset-5">
-                            <a href="{{route('user.index')}}" class="btn btn-dark">Back</a>
+                            <a href="{{route('admin.user.list')}}" class="btn btn-dark">Back</a>
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
+
                     </div>
                 </form>
               </div><!-- /.card-body -->
@@ -105,7 +112,11 @@
                     },
                     password_confirmation: {
                         required: true,
+                        equalTo: "#password"
                     },
+                    role:{
+                        required:true,
+                    }
                 },
                 messages: {
                     name: {
@@ -121,7 +132,7 @@
                     },
                     password_confirmation:  {
                         required: "Please provide a password",
-                        minlength: "Your password does not match!"
+                        equalTo: "Your password does not match!"
                     },
                 },
                 errorElement: 'span',
