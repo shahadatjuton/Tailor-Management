@@ -43,7 +43,7 @@
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('admin.user.store')}}" method="post" id="createUser">
+                <form action="{{route('admin.user.store')}}" method="post" id="createUser" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <!-- /.form-group -->

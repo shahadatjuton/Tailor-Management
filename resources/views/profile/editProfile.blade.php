@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Manage User')
+@section('title', 'Manage Profile')
 
 @push('css')
 
@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage User</h1>
+            <h1 class="m-0 text-dark">Manage Profile</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">Profile</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,13 +37,18 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-               <h4>Update User</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('admin.user.list')}}">
-                      <i class="fa fa-list"> User List</i>
-                  </a>
+               <h4>Update Profile</h4>
+                  <div class="row">
+                      <div class="col-md-4 offset-4-col-md">
+                          <div class="imageShow">
+                              <img id="showImage" class="profile-user-img img-fluid img-circle" src="{{asset('storage/profile/'.$user->image)}}"
+                                   alt="User profile picture" style="margin-left: 450px">
+                          </div>
+                      </div>
+                  </div>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('admin.user.update',$user->id)}}" method="post" >
+                <form action="{{route('profile.update',$user->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-row">
@@ -59,15 +64,12 @@
                         <div class="form-group col-md-4">
                             <label>Role</label>
                             <select name="role" class="form-control select2" style="width: 100%;" >
-                                <option selected="selected">Select Role</option>
-                                @foreach($roles as $role)
-                                    <option>{{$role->role_name}}</option>
-                                @endforeach
+                                <option selected="selected">{{$user->role_id}}</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>Upload Image</label>
-                            <input type="file" id="image" class="form-control" name="image">
+                            <input type="file" id="image" class="form-control" name="image" onchange="document.getElementById('showImage').src = window.URL.createObjectURL(this.files[0])">
                         </div>
 
                         <div class="form-group col-md-4 offset-5">

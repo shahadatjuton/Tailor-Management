@@ -20,7 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'profile', 'middleware'=>['auth']], function (){
 
+    Route::get('view','ProfileController@index')->name('profile.view');
+    Route::get('edit/{id}','ProfileController@edit')->name('profile.edit');
+    Route::put('update/{id}','ProfileController@update')->name('profile.update');
+
+});
 
 Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function (){
 
