@@ -33,12 +33,20 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
     Route::get('dashboard','DashboardController@index')->name('dashboard');
 
     Route::group(['prefix'=>'user'], function (){
-        Route::get('view','UserController@index')->name('user.list');
+        Route::get('view','UserController@index')->name('user.index');
         Route::get('create','UserController@create')->name('user.create');
         Route::post('store','UserController@store')->name('user.store');
         Route::get('edit/{id}','UserController@edit')->name('user.edit');
         Route::put('update/{id}','UserController@update')->name('user.update');
         Route::delete('destroy/{id}','UserController@destroy')->name('user.destroy');
+    });
+    Route::group(['prefix'=>'category'], function (){
+        Route::get('view','CategoryController@index')->name('category.index');
+        Route::get('create','CategoryController@create')->name('category.create');
+        Route::post('store','CategoryController@store')->name('category.store');
+        Route::get('edit/{id}','CategoryController@edit')->name('category.edit');
+        Route::put('update/{id}','CategoryController@update')->name('category.update');
+        Route::delete('destroy/{id}','CategoryController@destroy')->name('category.destroy');
     });
 });
 

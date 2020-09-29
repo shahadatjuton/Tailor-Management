@@ -114,6 +114,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="myblog" />
     <orderEntry type="module" module-name="MS Construction" />
-    <orderEntry type="module" module-name="constructioncompany" />
+    <orderEntry type="module" module-name="constructo" />
   </component>
 </module>

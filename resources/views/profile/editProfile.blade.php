@@ -63,9 +63,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Role</label>
-                            <select name="role" class="form-control select2" style="width: 100%;" >
-                                <option selected="selected">{{$user->role_id}}</option>
-                            </select>
+                            <input type="email" name="email" class="form-control" value="{{$user->role->role_name}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Upload Image</label>

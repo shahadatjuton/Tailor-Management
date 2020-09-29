@@ -38,7 +38,7 @@
             <div class="card">
               <div class="card-header">
                <h4>Add User</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('admin.user.list')}}">
+                  <a class="btn btn-success btn-sm float-right " href="{{route('admin.user.index')}}">
                       <i class="fa fa-list"> User List</i>
                   </a>
               </div><!-- /.card-header -->
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="form-group col-md-4 offset-5">
-                            <a href="{{route('admin.user.list')}}" class="btn btn-dark">Back</a>
+                            <a href="{{route('admin.user.index')}}" class="btn btn-dark">Back</a>
                             <button type="submit" class="btn btn-success">Create</button>
                         </div>
 
