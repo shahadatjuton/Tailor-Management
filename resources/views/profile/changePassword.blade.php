@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group col-md-4 offset-4">
                             <label>New Password</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" class="form-control" id="password">
                         </div>
                         <div class="form-group col-md-4 offset-4">
                             <label>Confirm Password</label>
