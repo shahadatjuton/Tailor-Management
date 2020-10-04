@@ -25,6 +25,8 @@ Route::group(['prefix'=>'profile', 'middleware'=>['auth']], function (){
     Route::get('view','ProfileController@index')->name('profile.view');
     Route::get('edit/{id}','ProfileController@edit')->name('profile.edit');
     Route::put('update/{id}','ProfileController@update')->name('profile.update');
+    Route::get('password/','ProfileController@newPassword')->name('profile.newPassword');
+    Route::put('password/change/','ProfileController@changePassword')->name('profile.changePassword');
 
 });
 
@@ -47,6 +49,14 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::get('edit/{id}','CategoryController@edit')->name('category.edit');
         Route::put('update/{id}','CategoryController@update')->name('category.update');
         Route::delete('destroy/{id}','CategoryController@destroy')->name('category.destroy');
+    });
+    Route::group(['prefix'=>'tag'], function (){
+        Route::get('view','TagController@index')->name('tag.index');
+        Route::get('create','TagController@create')->name('tag.create');
+        Route::post('store','TagController@store')->name('tag.store');
+        Route::get('edit/{id}','TagController@edit')->name('tag.edit');
+        Route::put('update/{id}','TagController@update')->name('tag.update');
+        Route::delete('destroy/{id}','TagController@destroy')->name('tag.destroy');
     });
 });
 

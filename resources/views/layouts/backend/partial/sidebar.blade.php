@@ -83,6 +83,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{($prefix == "admin/tag")?'menu-open':''}}">
+                    <a href="#" class="nav-link {{($prefix == "admin/tag")?'active':''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Tag Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.tag.index')}}" class="nav-link {{($route == "admin.tag.index")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Tag List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.tag.create')}}" class="nav-link {{($route == "admin.tag.create")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Create Tag</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
 
@@ -103,9 +126,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.user.create')}}" class="nav-link {{($route == "admin.user.create")?'active':''}}">
+                            <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p> Create User</p>
+                                <p> Change Password</p>
                             </a>
                         </li>
                     </ul>

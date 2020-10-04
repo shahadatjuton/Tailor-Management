@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://E:/xampp/htdocs/Electra/.idea/Electra.iml" filepath="E:/xampp/htdocs/Electra/.idea/Electra.iml" />
+      <module fileurl="file://E:/Hi-Tech/Hi Tech Global/.idea/Hi Tech Global.iml" filepath="E:/Hi-Tech/Hi Tech Global/.idea/Hi Tech Global.iml" />
       <module fileurl="file://E:/xampp/htdocs/MS Construction/.idea/MS Construction.iml" filepath="E:/xampp/htdocs/MS Construction/.idea/MS Construction.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TailorShop.iml" filepath="$PROJECT_DIR$/.idea/TailorShop.iml" />
       <module fileurl="file://E:/xampp/htdocs/hi-tech global/.idea/constructo.iml" filepath="E:/xampp/htdocs/hi-tech global/.idea/constructo.iml" />

@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request, $id){
-      
+
         $this->validate($request, [
             'name' => 'required',
             'email'=>'required',
@@ -52,5 +52,38 @@ class ProfileController extends Controller
         $user->save();
         Toastr::success('Profile Updated successfully!','Success');
         return redirect()->route('profile.view');
+    }
+
+    public function newPassword(){
+        return view('profile.changePassword');
+    }
+    public function changePassword(Request $request){
+        $this->validate( $request,[
+            'current_password'=>'required',
+            'password'=>'required|confirmed',
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+
+        if (Hash::check($request->current_password, $hashedPassword))
+        {
+            if (!Hash::check($request->password, $hashedPassword))
+            {
+                $user= User::findOrFail(Auth::id());
+                $user->password = Hash::make($request->password);
+                $user->save();
+                Toastr::warning('Your password has been changed successfully!','warning');
+                Auth::logout();
+                return redirect()->back();
+            } else
+            {
+                Toastr::warning('New password can not be same as old password','warning');
+                return redirect()->back();
+            }
+        } else
+        {
+            Toastr::error('Your password does not match', 'error');
+            return redirect()->back();
+        }
     }
 }

@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Profile</h1>
+            <h1 class="m-0 text-dark">Change Password</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -41,37 +41,32 @@
                   <div class="row">
                       <div class="col-md-4 offset-4-col-md">
                           <div class="imageShow">
-                              <img id="showImage" class="profile-user-img img-fluid img-circle" src="{{asset('storage/profile/'.$user->image)}}"
+                              <img id="showImage" class="profile-user-img img-fluid img-circle" src="{{asset('storage/profile/'.Auth::user()->image)}}"
                                    alt="User profile picture" style="margin-left: 450px">
                           </div>
                       </div>
                   </div>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('profile.update',$user->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('profile.changePassword')}}" method="post" enctype="multipart/form-data" id="changePassword">
                     @csrf
                     @method('PUT')
                     <div class="form-row">
                         <!-- /.form-group -->
-                        <div class="form-group col-md-4">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{$user->name}}">
+                        <div class="form-group col-md-4 offset-4">
+                            <label>Current Password</label>
+                            <input type="password" name="current_password" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>E-mail</label>
-                            <input type="email" name="email" class="form-control" value="{{$user->email}}">
+                        <div class="form-group col-md-4 offset-4">
+                            <label>New Password</label>
+                            <input type="password" name="password" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>Role</label>
-                            <input type="email" name="email" class="form-control" value="{{$user->role->role_name}}">
+                        <div class="form-group col-md-4 offset-4">
+                            <label>Confirm Password</label>
+                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>Upload Image</label>
-                            <input type="file" id="image" class="form-control" name="image" onchange="document.getElementById('showImage').src = window.URL.createObjectURL(this.files[0])">
-                        </div>
-
                         <div class="form-group col-md-4 offset-5">
-                            <a href="{{route('admin.user.index')}}" class="btn btn-dark">Back</a>
+                            <a href="{{route('profile.view')}}" class="btn btn-dark">Back</a>
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
 
@@ -97,14 +92,11 @@
     <script>
         $(function () {
 
-            $('#createUser').validate({
+            $('#changePassword').validate({
                 rules: {
-                    name: {
+                    current_password: {
                         required: true,
-                    },
-                    email: {
-                        required: true,
-                        email: true,
+                        minlength: 4
                     },
                     password: {
                         required: true,
@@ -113,18 +105,12 @@
                     password_confirmation: {
                         required: true,
                         equalTo: "#password"
-                    },
-                    role:{
-                        required:true,
                     }
                 },
                 messages: {
-                    name: {
-                        required: "Please enter a name"
-                    },
-                    email: {
-                        required: "Please enter a email address",
-                        email: "Please enter a vaild email address"
+                    current_password:{
+                        required: "Please provide your current password",
+                        minlength: "Your password must be at least 4 characters long"
                     },
                     password: {
                         required: "Please provide a password",
@@ -134,6 +120,7 @@
                         required: "Please provide a password",
                         equalTo: "Your password does not match!"
                     },
+
                 },
                 errorElement: 'span',
                 errorPlacement: function (error, element) {
