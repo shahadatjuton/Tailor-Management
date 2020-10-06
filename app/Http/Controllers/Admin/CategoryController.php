@@ -13,7 +13,7 @@ use function GuzzleHttp\Psr7\str;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        $categories = Category::latest()->get();
         return view('admin.category.categoryList',compact('categories'));
     }
     public function create(){

@@ -13,7 +13,7 @@ class TagController extends Controller
 {
 
     public function index(){
-        $tags = Tag::all();
+        $tags = latest()->get();
         return view('admin.tag.tagList',compact('tags'));
     }
     public function create(){

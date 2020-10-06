@@ -58,6 +58,14 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::put('update/{id}','TagController@update')->name('tag.update');
         Route::delete('destroy/{id}','TagController@destroy')->name('tag.destroy');
     });
+    Route::group(['prefix'=>'dress'], function (){
+        Route::get('view','DressController@index')->name('dress.index');
+        Route::get('create','DressController@create')->name('dress.create');
+        Route::post('store','DressController@store')->name('dress.store');
+        Route::get('edit/{id}','DressController@edit')->name('dress.edit');
+        Route::put('update/{id}','DressController@update')->name('dress.update');
+        Route::delete('destroy/{id}','DressController@destroy')->name('dress.destroy');
+    });
 });
 
 Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middleware'=>['auth','staff']], function (){

@@ -15,12 +15,12 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::latest()->get();
         return view('admin.user.userList',compact('users'));
     }
 
     public function create(){
-        $roles = Role::all();
+        $roles = Role::latest()->get();
         return view('admin.user.createUser',compact('roles'));
     }
 

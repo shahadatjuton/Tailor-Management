@@ -1,8 +1,8 @@
 <!-- Hero section -->
-<section class="hero-section set-bg" data-setbg="img/bg.jpg">
+<section class="hero-section set-bg" data-setbg="{{asset('assets/frontend')}}/img/bg.jpg">
     <div class="hero-slider owl-carousel">
         <div class="hs-item">
-            <div class="hs-left"><img src="{{asset('assets/frontend')}}/img/slider-img.png" alt=""></div>
+            <div class="hs-left"><img src="{{asset('assets/frontend/img/slider-img.png')}}" alt="Slider1"></div>
             <div class="hs-right">
                 <div class="hs-content">
                     <div class="price">from $19.90</div>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="hs-item">
-            <div class="hs-left"><img src="{{asset('assets/frontend')}}/img/slider-img.png" alt=""></div>
+            <div class="hs-left"><img src="{{asset('assets/frontend/img/slider-img.png')}}" alt="slider2"></div>
             <div class="hs-right">
                 <div class="hs-content">
                     <div class="price">from $19.90</div>

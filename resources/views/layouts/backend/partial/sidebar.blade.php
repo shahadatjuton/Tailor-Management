@@ -106,8 +106,29 @@
                         </li>
                     </ul>
                 </li>
-
-
+                <li class="nav-item has-treeview {{($prefix == "admin/dress")?'menu-open':''}}">
+                    <a href="#" class="nav-link {{($prefix == "admin/dress")?'active':''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dress Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.dress.index')}}" class="nav-link {{($route == "admin.dress.index")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Dress List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.dress.create')}}" class="nav-link {{($route == "admin.dress.create")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Create Dress</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
                 <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
