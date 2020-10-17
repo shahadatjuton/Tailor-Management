@@ -60,13 +60,16 @@
                     @foreach($dresses as $key=>$dress)
                     <tr>
                         <td>{{$key +1}}</td>
-                        <td><img src="{{asset('storage/dress/'.$dress->image)}}" height="40" width="60"></td>
+                        <td><img src="{{asset('storage/dress/'.$dress->image)}}" height="120" width="140"></td>
                         <td>{{$dress->title}}</td>
                         <td>{{$dress->description}}</td>
                         <td>{{$dress->price}}</td>
                         <td>{{$dress->created_by}}</td>
                         <td>{{$dress->created_at->toDateString()}}</td>
                         <td>
+                            <a href="{{route('admin.dress.show',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a href="{{route('admin.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>

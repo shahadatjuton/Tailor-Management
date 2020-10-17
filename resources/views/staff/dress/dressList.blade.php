@@ -38,7 +38,7 @@
             <div class="card">
               <div class="card-header">
                <h4>Dress List</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('admin.dress.create')}}">
+                  <a class="btn btn-success btn-sm float-right " href="{{route('staff.dress.create')}}">
                       <i class="fa fa-plus-circle"> Add Dress</i>
                   </a>
               </div><!-- /.card-header -->
@@ -53,6 +53,7 @@
                         <th>Price</th>
                         <th>Created By</th>
                         <th>Created at</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -60,20 +61,29 @@
                     @foreach($dresses as $key=>$dress)
                     <tr>
                         <td>{{$key +1}}</td>
-                        <td><img src="{{asset('storage/dress/'.$dress->image)}}" height="40" width="60"></td>
+                        <td><img src="{{asset('storage/dress/'.$dress->image)}}" height="120" width="140"></td>
                         <td>{{$dress->title}}</td>
-                        <td>{{$dress->description}}</td>
+                        <td>{{Str::limit($dress->description,30)}}</td>
                         <td>{{$dress->price}}</td>
                         <td>{{$dress->created_by}}</td>
                         <td>{{$dress->created_at->toDateString()}}</td>
                         <td>
-                            <a href="{{route('admin.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                            @if($dress->status == 0)
+                                <p class="bg-warning">Pending</p>
+                            @elseif($dress->status == 1)
+                                <p class="bg-success">Accepted</p>
+                             @else
+                                <p class="bg-danger">Rejected</p>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{route('staff.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <button type="button"  class="btn btn-danger waves-effect btn-sm" onclick="deletedata({{$dress->id}})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
-                            <form  id="delete-data-{{$dress->id}}" action="{{route('admin.dress.destroy',$dress->id)}}"
+                            <form  id="delete-data-{{$dress->id}}" action="{{route('staff.dress.destroy',$dress->id)}}"
                                    method="post" style="display:none;"
                             >
                                 @csrf

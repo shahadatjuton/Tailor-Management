@@ -12,14 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'profile', 'middleware'=>['auth']], function (){
 
     Route::get('view','ProfileController@index')->name('profile.view');
@@ -65,12 +61,25 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::get('edit/{id}','DressController@edit')->name('dress.edit');
         Route::put('update/{id}','DressController@update')->name('dress.update');
         Route::delete('destroy/{id}','DressController@destroy')->name('dress.destroy');
+        Route::get('pending/list','DressController@pendingList')->name('dress.pending');
+        Route::get('show/dress/{id}','DressController@showDress')->name('dress.show');
+        Route::put('accept/{id}','DressController@acceptDress')->name('dress.accept');
+
     });
 });
 
 Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middleware'=>['auth','staff']], function (){
 
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+
+    Route::group(['prefix'=>'dress'], function (){
+        Route::get('view','DressController@index')->name('dress.index');
+        Route::get('create','DressController@create')->name('dress.create');
+        Route::post('store','DressController@store')->name('dress.store');
+        Route::get('edit/{id}','DressController@edit')->name('dress.edit');
+        Route::put('update/{id}','DressController@update')->name('dress.update');
+        Route::delete('destroy/{id}','DressController@destroy')->name('dress.destroy');
+    });
 
 });
 

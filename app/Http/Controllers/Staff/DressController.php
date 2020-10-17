@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Staff;
 
 use App\Category;
 use App\Dress;
@@ -17,14 +17,14 @@ use Intervention\Image\Facades\Image;
 class DressController extends Controller
 {
     public function index(){
-        $dresses = Dress::all();
-        return view('admin.dress.dressList',compact('dresses'));
+        $dresses = Dress::where('created_by',Auth::id())->latest()->get();
+        return view('staff.dress.dressList',compact('dresses'));
     }
 
     public function create(){
         $categories = Category::latest()->get();
         $tags = Tag::latest()->get();
-        return view('admin.dress.CreateDress',compact('categories','tags'));
+        return view('staff.dress.CreateDress',compact('categories','tags'));
     }
 
     public function store( Request $request){
@@ -56,10 +56,10 @@ class DressController extends Controller
         $dress->price = $request->price;
         $dress->created_by = Auth::id();
         $dress->image = $image_name;
-        $dress->status = 1;
+        $dress->status = 0;
         $dress->save();
         Toastr::success('Dress is Created','successful!');
-        return redirect()->route('admin.dress.index');
+        return redirect()->route('staff.dress.index');
 
     }
 
@@ -67,7 +67,7 @@ class DressController extends Controller
         $dress = Dress::findOrFail($id);
         $categories = Category::latest()->get();
         $tags = Tag::latest()->get();
-        return view('admin.dress.editDress',compact('dress','categories','tags'));
+        return view('staff.dress.editDress',compact('dress','categories','tags'));
     }
 
     public function update( Request $request, $id){
@@ -105,33 +105,12 @@ class DressController extends Controller
         $dress->image = $image_name;
         $dress->save();
         Toastr::success('Dress is Updated','successful!');
-        return redirect()->route('admin.dress.index');
+        return redirect()->route('staff.dress.index');
     }
     public function destroy($id){
         $dress = Dress::findOrFail($id);
         $dress->delete();
         Toastr::success('The data is deleted successfully!','Success!');
-        return redirect()->route('admin.dress.index');
+        return redirect()->route('staff.dress.index');
     }
-
-    public function pendingList(){
-        $dresses = Dress::where('status',0)->latest()->get();
-        return view('admin.dress.pendingList',compact('dresses'));
-    }
-
-    public function showDress($id){
-        $dress = Dress::findOrFail($id);
-        return view('admin.dress.viewDress',compact('dress'));
-    }
-
-    public function acceptDress($id){
-        $dress = Dress::findOrFail($id);
-        $dress->status = 1;
-        $dress->save();
-        Toastr::success('The design accepted successfully!');
-        return redirect()->route('admin.dress.pending');
-    }
-
-
-
 }

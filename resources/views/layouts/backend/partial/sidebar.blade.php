@@ -127,9 +127,39 @@
                                 <p> Create Dress</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.dress.pending')}}" class="nav-link {{($route == "admin.dress.pending")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Pending Design List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
+{{--                Staff--}}
+                <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
+                    <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dress Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('staff.dress.index')}}" class="nav-link {{($route == "staff.dress.index")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Dress List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('staff.dress.create')}}" class="nav-link {{($route == "staff.dress.create")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Create Dress</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
