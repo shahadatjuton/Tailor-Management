@@ -37,6 +37,7 @@
                     <ul class="nav nav-treeview">
                     </ul>
                 </li>
+@if(Auth::id() == 1)
                 <li class="nav-item has-treeview {{($prefix == "admin/user")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/user")?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -135,7 +136,7 @@
                         </li>
                     </ul>
                 </li>
-
+@elseif(Auth::id() == 2)
 {{--                Staff--}}
                 <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
@@ -160,7 +161,7 @@
                         </li>
                     </ul>
                 </li>
-
+@endif
                 <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>

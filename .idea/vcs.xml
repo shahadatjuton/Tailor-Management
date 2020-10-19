@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../InventoryManagement" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PointOfSale" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="E:/xampp/htdocs/Blog" vcs="Git" />
   </component>
