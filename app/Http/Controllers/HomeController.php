@@ -24,7 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dress = Dress::latest()->get();
-        return view('welcome',compact('dress'));
+        $dresses = Dress::where('status',1)->latest()->get();
+        return view('welcome',compact('dresses'));
     }
+
+    public function showDress($id){
+        $dress = Dress::find($id);
+        return view('dress.viewDress',compact('dress'));
+    }
+
+
 }

@@ -34,9 +34,9 @@
 </head>
 <body>
 <!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+{{--<div id="preloder">--}}
+{{--    <div class="loader"></div>--}}
+{{--</div>--}}
 
 <!-- Header section -->
 @include('layouts.frontend.partial.header')
@@ -44,7 +44,7 @@
 
 
 <!-- Hero section -->
-@include('layouts.frontend.partial.slider')
+{{--@include('layouts.frontend.partial.slider')--}}
 <!-- Hero section end -->
 
 @yield('content')

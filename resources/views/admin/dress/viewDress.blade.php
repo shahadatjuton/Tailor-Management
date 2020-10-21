@@ -78,6 +78,9 @@
                                   @csrf
                                   @method('DELETE')
                               </form>
+                              @if($dress->status == 1)
+                                  <button class="btn btn-large btn-success">Accepted</button>
+                              @else
                               <button type="button"  class="btn btn-success waves-effect btn-sm" onclick="acceptdata({{$dress->id}})">
                                   <i class="fas fa-check"></i>
                               </button>
@@ -87,6 +90,7 @@
                                   @csrf
                                   @method('PUT')
                               </form>
+                              @endif
                           </div>
                       </div>
                   </div>

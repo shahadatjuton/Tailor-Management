@@ -89,6 +89,7 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
 
 });
 
+Route::get('dress/{id}','HomeController@showDress')->name('dress.show');
 
 //Route::group(['as'=>'user.','prefix'=>'user','namespace'=>'User','middleware'=>['auth','user']], function (){
 //    Route::get('dashboard','DashboardController@index')->name('dashboard');

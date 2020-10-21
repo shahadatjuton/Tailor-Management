@@ -23,7 +23,7 @@
 <div class="container">
     <div class="card card-login mx-auto text-center bg-dark">
         <div class="card-header mx-auto bg-dark">
-            <h2>Taylor Shop Management</h2>
+            <a href="{{route('home')}}" ><h2>Taylor Shop Management</h2></a>
             <span class="logo_title mt-5"> Login Dashboard </span>
             <!--            <h1>--><?php //echo $message?><!--</h1>-->
         </div>
