@@ -7,33 +7,6 @@
 {{--    <div class="loader"></div>--}}
 {{--</div>--}}
 
-<!-- Header section -->
-<header class="header-section header-normal">
-    <div class="container-fluid">
-        <!-- logo -->
-        <div class="site-logo">
-            <img src="{{asset('assets/frontend')}}/img/logo.png" alt="logo">
-        </div>
-        <!-- responsive -->
-        <div class="nav-switch">
-            <i class="fa fa-bars"></i>
-        </div>
-        <div class="header-right">
-            <a href="cart.html" class="card-bag"><img src="{{asset('assets/frontend')}}img/icons/bag.png" alt=""><span>2</span></a>
-            <a href="#" class="search"><img src="{{asset('assets/frontend')}}img/icons/search.png" alt=""></a>
-        </div>
-        <!-- site menu -->
-        <ul class="main-menu">
-            <li><a href="{{route('home')}}">Home</a></li>
-            <li><a href="#">Woman</a></li>
-            <li><a href="#">Man</a></li>
-            <li><a href="#">LookBook</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-</header>
-<!-- Header section end -->
 
 <!-- Page -->
 <div class="page-area product-page spad">
@@ -50,24 +23,42 @@
                     <div class="pc-meta">
                         <h4 class="price">{{$dress->price}}</h4>
                     </div>
-                    <p>{{$dress->description}}</p>
 {{--       Form             --}}
-                    <form action="{{route('admin.user.store')}}" method="post" id="createUser" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-row">
-                            <!-- /.form-group -->
-                            <div class="form-group col-md-4">
-                                <label>Quantity</label>
-                                <input type="number" name="quantity" class="form-control" min="1">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h4>Give your dress size below</h4>
                             </div>
-
-                            <div class="form-group col-md-4 offset-5">
-                                <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                            </div>
-
                         </div>
+                        <div class="card-body">
+                            <form action="{{route('customer.cart.store',$dress->id)}}" method="post" id="createUser" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row">
+                                    <!-- /.form-group -->
+                                    <div class="form-group col-md-6">
+                                        <label>Quantity</label>
+                                        <input type="number" name="quantity" class="form-control" min="1">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Expected Delivery Date</label>
+                                        <input type="date" name="date" class="form-control" >
+                                    </div>
+                                    <div class="form-group col-md-8 offset-2">
+                                        <label>Dress Size</label>
+                                            <textarea  name="size" rows="3" cols="30">
 
-                    </form>
+                                            </textarea>
+                                    </div>
+
+                                    <div class="form-group col-md-4 offset-4">
+                                        <button type="submit" class="site-btn btn-line">ADD TO CART</button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

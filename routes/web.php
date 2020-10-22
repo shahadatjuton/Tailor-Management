@@ -24,6 +24,8 @@ Route::group(['prefix'=>'profile', 'middleware'=>['auth']], function (){
     Route::get('password/','ProfileController@newPassword')->name('profile.newPassword');
     Route::put('password/change/','ProfileController@changePassword')->name('profile.changePassword');
 
+
+
 });
 
 Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function (){
@@ -86,6 +88,14 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
 Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', 'middleware'=>['auth','customer']], function (){
 
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+
+
+    Route::get('cart/view/','CartController@index')->name('cart.index');
+    Route::post('dress/{id}/','CartController@store')->name('cart.store');
+    Route::get('cart/{id}/','CartController@destroy')->name('cart.destroy');
+    Route::get('cart/clear/','CartController@clear')->name('cart.clear');
+
+    Route::get('checkout/','CartController@checkout')->name('cart.checkout');
 
 });
 
