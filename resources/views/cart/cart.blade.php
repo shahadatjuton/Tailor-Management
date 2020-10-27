@@ -29,7 +29,7 @@
                     <td class="quy-col">
                         <div class="quy-input">
                             <span>Qty</span>
-                            <input type="number" value="{{$cart->quantity}}">
+                            <input  value="{{$cart->quantity}}" readonly>
                         </div>
                     </td>
                     <td class="total-col">{{(\App\Dress::find($cart->dress_id))->price * $cart->quantity}}</td>

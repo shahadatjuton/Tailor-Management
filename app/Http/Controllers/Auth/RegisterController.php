@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\UserInfo;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -64,6 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $userInfo = new UserInfo();
+        $userInfo->size = $data->size;
+        $userInfo->house = $data->house;
+        $userInfo->road = $data->road;
+        $userInfo->zone = $data->zone;
+        $userInfo->city = $data->city;
+        $userInfo->phone = $data->phone;
+        $userInfo->save();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

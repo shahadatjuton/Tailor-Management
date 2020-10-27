@@ -3,12 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">
+                    {{ __('Register') }}
+
+{{--                    <div class="imageShow float-right">--}}
+{{--                        <img id="showImage" class=" img-fluid img-circle float-left"--}}
+{{--                             alt="User Image"  width="140" height="120">--}}
+{{--                    </div>--}}
+                </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -60,7 +67,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>--}}
 
+{{--                            <div class="col-md-6">--}}
+{{--                                <input type="file" id="image" class="form-control" name="image" onchange="document.getElementById('showImage').src = window.URL.createObjectURL(this.files[0])">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

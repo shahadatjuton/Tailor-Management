@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/','HomeController@index')->name('home');
+//Route::get('/register','HomeController@register')->name('register');
+//Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+//Route::post('/logout','Auth\LoginController@logout ')->name('logout');
+//Route::get('/password/confirm','Auth\ConfirmPasswordController@confirm');
+//Route::get('/password.confirm','Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
 
 Auth::routes();
 
@@ -88,6 +93,8 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
 Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', 'middleware'=>['auth','customer']], function (){
 
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::get('/user-info/','DashboardController@customerInfo')->name('info');
+    Route::post('/user-info/store','DashboardController@infoStore')->name('info.store');
 
 
     Route::get('cart/view/','CartController@index')->name('cart.index');
@@ -96,6 +103,9 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
     Route::get('cart/clear/','CartController@clear')->name('cart.clear');
 
     Route::get('checkout/','CartController@checkout')->name('cart.checkout');
+    Route::post('store/order/','CartController@order')->name('cart.order');
+
+
 
 });
 
