@@ -14,6 +14,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
 
 class CartController extends Controller
 {
@@ -103,14 +104,14 @@ class CartController extends Controller
         $order->total_amount = $request->total;
         $order->payment_status = 0;
         $order->save();
-
+        $order_id = $order->id;
 // ================ Order Details ==================================
         $carts = Cart::where('user_id', Auth::id())->get();
 
 //        $purchase_id = Purchase::where('created_by',Auth::id())->get()->last()->id;
         foreach ($carts as $cart){
             $order_details = new OrderDetail();
-            $order_details->order_id = $order->id;
+            $order_details->order_id = $order_id;
             $order_details->dress_id = $cart->dress_id;
             $order_details->quantity = $cart->quantity;
             $order_details->total = $cart->total;
@@ -119,16 +120,82 @@ class CartController extends Controller
         }
 
         $payment = new Payment();
-        $payment->order_id=$order->id;
+        $payment->order_id=$order_id;
         $payment->user_id=Auth::id();
         $payment->trx_id="trx-id";
         $payment->save();
 
         Cart::where('user_id', Auth::id())->delete();
         Toastr::success('Order completed','Success!!');
-        return redirect()->route('customer.dashboard');
+        return redirect()->route('customer.cart.payment',compact('order_id'));
 //
 
     }
+    public function orderList(){
+        $orders = Auth::user()->orders;
+        return view('customer.orderList',compact('orders'));
+    }
+
+    public function orderDetails($id){
+         $orderDetails = OrderDetail::where('order_id',$id)->get();
+        return view('customer.orderDetails',compact('orderDetails'));
+    }
+
+    public function payment($id){
+        $order = Order::find($id);
+        return view('customer.payment',compact('order'));
+
+    }
+
+    public function paymentStore(Request $request){
+
+
+        $this->validate($request, [
+            'card_no' => 'required',
+            'expiry_month' => 'required',
+            'expiry_year' => 'required',
+            'ccv' => 'required',
+        ]);
+
+        $stripe = Stripe::make('sk_test_51HgPI5FDuGHSpFLnoOntYhXp5WqtgT1CFZ34G2CAKeXE0OvwQ7rN8ajAdeO6ewxH5f579vjqOpsEqMmVxTQOqJ3Q00YHX94oqg');
+        try {
+            $token = $stripe->tokens()->create([
+                'card' => [
+                    'number'    => $request->get('card_no'),
+                    'exp_month' => $request->get('expiry_month'),
+                    'exp_year'  => $request->get('expiry_year'),
+                    'cvc'       => $request->get('cvv'),
+                ],
+            ]);
+            if (!isset($token['id'])) {
+                return Redirect::to('strips')->with('Token is not generate correct');
+            }
+//            $charge = $stripe->charges()->create([
+//                'card' => $token['id'],
+//                'currency' => 'USD',
+//                'amount'   => 20,
+//                'description' => 'Register Event',
+//            ]);
+            $payment = Payment::where('order_id',$request->order_id)->get();
+            $payment->trx_id = $token;
+            $payment->save();
+            if ($payment){
+                $order = Order::find($request->order_id);
+                $order->payment_status = 1;
+                $order->save();
+            }
+
+//            $charge = Charge::create(array(
+//                'amount' => 20,
+//                "source" => $token,
+//                'currency' => 'usd'
+//            ));
+
+            return 'Payment Success';
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+
+}
 
 }

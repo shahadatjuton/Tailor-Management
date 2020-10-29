@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function userInfo(){
         return $this->belongsTo('App\UserInfo','user_id');
     }
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
 }

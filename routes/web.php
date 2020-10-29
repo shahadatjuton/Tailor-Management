@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/','HomeController@index')->name('home');
+Route::get('/test/payment','HomeController@payment')->name('payment');
+Route::get('/store/payment','HomeController@storePayment')->name('store.payment');
 //Route::get('/register','HomeController@register')->name('register');
 //Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
 //Route::post('/logout','Auth\LoginController@logout ')->name('logout');
@@ -73,6 +75,20 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::put('accept/{id}','DressController@acceptDress')->name('dress.accept');
 
     });
+    Route::group(['prefix'=>'order'], function (){
+        Route::get('view','OrderController@index')->name('order.index');
+        Route::get('order/show/{id}','OrderController@show')->name('order.show');
+
+
+        Route::get('create','OrderController@create')->name('order.create');
+        Route::post('store','OrderController@store')->name('order.store');
+        Route::get('edit/{id}','OrderController@edit')->name('order.edit');
+        Route::put('update/{id}','OrderController@update')->name('order.update');
+        Route::delete('destroy/{id}','OrderController@destroy')->name('order.destroy');
+        Route::get('pending/list','OrderController@pendingList')->name('order.pending');
+        Route::put('accept/{id}','OrderController@acceptDress')->name('order.accept');
+
+    });
 });
 
 Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middleware'=>['auth','staff']], function (){
@@ -104,6 +120,11 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
 
     Route::get('checkout/','CartController@checkout')->name('cart.checkout');
     Route::post('store/order/','CartController@order')->name('cart.order');
+    Route::get('order/list/','CartController@orderList')->name('cart.order.list');
+    Route::get('order/details/{id}/','CartController@orderDetails')->name('cart.order.details');
+    Route::get('order/payment/{id}','CartController@payment')->name('cart.payment');
+    Route::post('order/payment/store/','CartController@paymentStore')->name('cart.payment.store');
+
 
 
 
