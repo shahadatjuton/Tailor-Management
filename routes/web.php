@@ -77,7 +77,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
     });
     Route::group(['prefix'=>'order'], function (){
         Route::get('view','OrderController@index')->name('order.index');
-        Route::get('order/show/{id}','OrderController@show')->name('order.show');
+        Route::get('show/{id}','OrderController@show')->name('order.show');
 
 
         Route::get('create','OrderController@create')->name('order.create');

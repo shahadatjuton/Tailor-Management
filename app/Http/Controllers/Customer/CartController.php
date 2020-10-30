@@ -36,7 +36,6 @@ class CartController extends Controller
         $cart->dress_id = $id;
         $cart->total = $dress->price * $request->quantity;
         $cart->quantity = $request->quantity;
-        $cart->delivery_date = $request->date;
         $cart->size =$request->size;
         $cart->save();
         Toastr::success('Dress added into cart list','Success!');
@@ -73,6 +72,7 @@ class CartController extends Controller
             'road'=>'required',
             'zone'=>'required',
             'city'=>'required',
+            'date'=>'required',
         ]);
         if ( UserInfo::where('user_id',Auth::id())->first()->count() < 1){
             $info = new  UserInfo();
@@ -103,6 +103,7 @@ class CartController extends Controller
         $order->invoice_no = $invoice_no;
         $order->total_amount = $request->total;
         $order->payment_status = 0;
+        $order->delivery_date = $request->date;
         $order->save();
         $order_id = $order->id;
 // ================ Order Details ==================================
@@ -127,7 +128,7 @@ class CartController extends Controller
 
         Cart::where('user_id', Auth::id())->delete();
         Toastr::success('Order completed','Success!!');
-        return redirect()->route('customer.cart.payment',compact('order_id'));
+        return redirect()->route('customer.cart.payment',$order_id);
 //
 
     }

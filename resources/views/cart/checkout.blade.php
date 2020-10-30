@@ -67,7 +67,6 @@
                             <div class="col-md-12">
                                 <input type="text" placeholder="Phone *"  class="text-center" name="city" value="{{$user_info->city}}">
                             </div>
-
                         </div>
                     </div>
                 @endif
@@ -91,6 +90,14 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label>Select Possible Delivery Date</label>
+                                    <input type="date" name="date" class="form-control">
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="site-btn btn-full">

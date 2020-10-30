@@ -61,7 +61,11 @@
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->total}}</td>
                         <td>{{$order->size}}</td>
-                        <td>Comment</td>
+                        <td>
+                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
+                                <i class="far fa-check-circle"></i>
+                            </a>
+                        </td>
 
                     </tr>
                         @endforeach

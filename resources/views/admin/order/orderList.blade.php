@@ -72,8 +72,8 @@
                         </td>
                         <td>{{$order->created_at->toDateString()}}</td>
                         <td>
-                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
-                                <i class="fa fa-accusoft"></i>
+                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
+                                <i class="fas fa-check-circle"></i>
                             </a>
                             <a href="{{route('admin.order.show',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-eye"></i>

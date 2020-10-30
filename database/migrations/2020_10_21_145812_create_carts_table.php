@@ -20,7 +20,6 @@ class CreateCartsTable extends Migration
             $table->integer('quantity');
             $table->double('total');
             $table->text('size');
-            $table->date('delivery_date');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->string('invoice_no')->nullable();
             $table->double('total_amount');
+            $table->date('delivery_date');
             $table->tinyInteger('payment_status')->default(0);
             $table->timestamps();
         });

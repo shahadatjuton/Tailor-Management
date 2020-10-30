@@ -42,11 +42,13 @@
                         <h4>There is no dress in cart list</h4>
                     </div>
                 @endforelse
+                @if($carts->count() > 0)
                 <tr>
                     <td colspan="3"></td>
                     <td>Grand Total </td>
                     <td>56789 Taka</td>
                 </tr>
+                @endif
                 </tbody>
             </table>
         </div>
