@@ -75,6 +75,9 @@
                             <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 Pay
                             </a>
+                            <a href="{{route('customer.order.destroy',$order->id)}}" class="btn btn-danger btn-sm" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
                             <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-eye"></i>
                             </a>

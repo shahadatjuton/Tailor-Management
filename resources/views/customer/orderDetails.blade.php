@@ -44,22 +44,28 @@
                     <thead>
                     <tr>
                         <th>SL No</th>
-                        <th>Order No</th>
                         <th>Dress Name</th>
                         <th>Quantity</th>
                         <th>Total Amount</th>
                         <th>Size</th>
+                        <th>Instruction</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($orderDetails as $key=>$order)
                     <tr>
                         <td>{{$key +1}}</td>
-                        <td>{{$order->order_id}}</td>
                         <td>{{\App\Dress::find($order->dress_id)->title}}</td>
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->total}}</td>
                         <td>{{$order->size}}</td>
+                        <td>{{$order->instruction}}</td>
+                        <td>
+                            <a href="{{route('customer.cart.order.size',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
 
                     </tr>
                         @endforeach

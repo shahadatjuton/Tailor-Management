@@ -126,6 +126,9 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
     Route::get('order/details/{id}/','CartController@orderDetails')->name('cart.order.details');
     Route::get('order/payment/{id}','CartController@payment')->name('cart.payment');
     Route::post('order/payment/store/','CartController@paymentStore')->name('cart.payment.store');
+    Route::get('order/update/size/{id}','CartController@updateSize')->name('cart.order.size');
+    Route::post('size/store/','CartController@storeSize')->name('cart.order.size.store');
+    Route::get('order/destroy/{id}','CartController@orderDestroy')->name('order.destroy');
 
 
 

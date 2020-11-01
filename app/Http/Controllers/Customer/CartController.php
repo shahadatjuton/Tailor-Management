@@ -199,4 +199,23 @@ class CartController extends Controller
 
 }
 
+        public function updateSize($id){
+        $order_detail = OrderDetail::find($id);
+        return view('customer.updateSize',compact('order_detail'));
+        }
+
+    public function storeSize(Request $request){
+        $order_detail = OrderDetail::find($request->id);
+        $order_detail->size = $request->size;
+        $order_detail->save();
+        Toastr::success('Dress Size Updated','Success!!');
+        return redirect()->route('customer.cart.order.list');
+    }
+
+    public function orderDestroy($id){
+      $order = Order::find($id);
+      $order->delete();
+      Toastr::success('Order deleted successfully','Success');
+      return redirect()->back();
+    }
 }
