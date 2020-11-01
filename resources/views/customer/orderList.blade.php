@@ -45,10 +45,10 @@
                     <tr>
                         <th>SL No</th>
                         <th>Invoice No</th>
-                        <th>Customer Name</th>
                         <th>Total Amount</th>
                         <th>Payment Status</th>
                         <th>Order Date</th>
+                        <th>Delivery Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -57,7 +57,6 @@
                     <tr>
                         <td>{{$key +1}}</td>
                         <td>{{$order->invoice_no}}</td>
-                        <td>{{$order->user->name}}</td>
                         <td>{{$order->total_amount}}</td>
                         <td>
                             @if($order->status == 0)
@@ -71,6 +70,7 @@
                             @endif
                         </td>
                         <td>{{$order->created_at->toDateString()}}</td>
+                        <td>{{$order->possible_date}}</td>
                         <td>
                             <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 Pay

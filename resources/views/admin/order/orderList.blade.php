@@ -49,6 +49,7 @@
                         <th>Total Amount</th>
                         <th>Payment Status</th>
                         <th>Order Date</th>
+                        <th>Delivery Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -71,6 +72,7 @@
                             @endif
                         </td>
                         <td>{{$order->created_at->toDateString()}}</td>
+                        <td>{{$order->possible_date}}</td>
                         <td>
                             <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
                                 <i class="fas fa-check-circle"></i>

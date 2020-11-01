@@ -40,47 +40,34 @@
                <h4>Order Details</h4>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>SL No</th>
-                        <th>Invoice No</th>
-                        <th>Dress Name</th>
-                        <th>Quantity</th>
-                        <th>Total Amount</th>
-                        <th>Size</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($orderDetails as $key=> $order)
-                    <tr>
-                        <td>{{$key +1}}</td>
-                        <td>{{$Order->invoice_no}}</td>
-                        <td>{{\App\Dress::find($order->dress_id)->title}}</td>
-                        <td>{{$order->quantity}}</td>
-                        <td>{{$order->total}}</td>
-                        <td>{{$order->size}}</td>
-                        <td>
-                            <a href="{{route('admin.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="show">
-                                <i class="far fa-eye"></i>
-                            </a>
-                        </td>
-
-                    </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <ul style="list-style: none">
+                              <li>Invoice No..</li>
+                              <li>Dress Name</li>
+                              <li>Quantity</li>
+                              <li>Size</li>
+                          </ul>
+                      </div>
+                      <div class="col-md-6">
+                          <ul style="list-style: none">
+                              <li>{{$order_details->order->invoice_no}}</li>
+                              <li>{{$order_details->dress->title}}</li>
+                              <li>{{$order_details->quantity}}</li>
+                              <li>{{$order_details->size}}</li>
+                          </ul>
+                      </div>
+                  </div>
               </div><!-- /.card-body -->
                 <div class="card-body">
-                    <form action="{{route('admin.order.store')}}" method="post" id="createUser" enctype="multipart/form-data">
+                    <form action="{{route('admin.order.instruction')}}" method="post"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
-                            <input type="hidden" name="order_id" value="{{$Order->id}}">
+                            <input type="hidden" name="order_details_id" value="{{$order_details->id}}">
                             <!-- /.form-group -->
                             <div class="form-group col-md-8 offset-2">
-                                <label>Select Delivery Date</label>
-                                <input type="date" name="date" class="form-control">
+                                <label>Instruction About Dress Size</label>
+                                <input type="text" name="instruction" class="form-control">
                             </div>
                             <div class="form-group col-md-4 offset-5">
                                 <a href="{{route('admin.order.index')}}" class="btn btn-dark">Back</a>
