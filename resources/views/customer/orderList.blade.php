@@ -59,7 +59,7 @@
                         <td>{{$order->invoice_no}}</td>
                         <td>{{$order->total_amount}}</td>
                         <td>
-                            @if($order->status == 0)
+                            @if($order->payment_status == 0)
                                 <div class="bg-warning">
                                     <p class="text-center">Unpaid</p>
                                 </div>
@@ -72,14 +72,18 @@
                         <td>{{$order->created_at->toDateString()}}</td>
                         <td>{{$order->possible_date}}</td>
                         <td>
-                            <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                            <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Pay">
                                 Pay
+                            </a>
+
+                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="View">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{{route('customer.order.accept',$order->id)}}" class="btn btn-success btn-sm" title="Accept">
+                                <i class="fas fa-check-circle"></i>
                             </a>
                             <a href="{{route('customer.order.destroy',$order->id)}}" class="btn btn-danger btn-sm" title="Delete">
                                 <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
-                                <i class="fa fa-eye"></i>
                             </a>
                         </td>
                     </tr>

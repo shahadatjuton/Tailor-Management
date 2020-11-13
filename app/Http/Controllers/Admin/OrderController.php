@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Order;
 use App\Model\OrderDetails;
+use App\Notifications\NotifyForSize;
 use App\OrderDetail;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use function Sodium\compare;
@@ -31,6 +33,7 @@ class OrderController extends Controller
 
         $order = \App\Order::find($request->order_id);
         $order->possible_date = $request->date;
+        $order->status = 1;
         $order->save();
         Toastr::success('Delivery date set up successfully!','Success!!');
         return redirect()->route('admin.order.index');
@@ -44,8 +47,15 @@ class OrderController extends Controller
 
     public function sizeInstruction(Request $request){
         $order_details = OrderDetail::find($request->order_details_id);
+        $order = \App\Order::where('id',$order_details->order_id)->first();
+        $order->status = 0;
+        $order->save();
+
         $order_details->instruction = $request->instruction;
+        $order_details->status = 0;
         $order_details->save();
+        $user = User::where('id',$order->user_id)->first();
+        $user->notify(new NotifyForSize($order_details));
         Toastr::success('Instruction given with success','Successfully');
         return redirect()->route('admin.order.index');
     }

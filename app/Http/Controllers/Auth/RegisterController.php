@@ -33,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -42,6 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = route('home');
         $this->middleware('guest');
     }
 
@@ -68,14 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $userInfo = new UserInfo();
-        $userInfo->size = $data->size;
-        $userInfo->house = $data->house;
-        $userInfo->road = $data->road;
-        $userInfo->zone = $data->zone;
-        $userInfo->city = $data->city;
-        $userInfo->phone = $data->phone;
-        $userInfo->save();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

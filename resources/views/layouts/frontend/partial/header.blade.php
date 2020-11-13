@@ -16,12 +16,10 @@
             </div>
             <!-- site menu -->
             <ul class="main-menu">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li><a href="#">Woman</a></li>
-                <li><a href="#">Man</a></li>
-                <li><a href="#">LookBook</a></li>
-                <li><a href="{{route('payment')}}">Payment</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li class="active"><a href="{{route('home')}}">Home</a></li>
+                @if(!Auth::user())
+                <li><a href="{{route('register')}}">Registration</a></li>
+                @endif
                 <li><a href="{{route('login')}}">Log In</a></li>
             </ul>
         </div>

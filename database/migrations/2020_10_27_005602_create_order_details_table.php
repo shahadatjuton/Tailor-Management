@@ -20,6 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->double('quantity');
             $table->double('total');
             $table->text('size');
+            $table->text('instruction')->nullable();
             $table->timestamps();
         });
     }

@@ -94,12 +94,13 @@
                     <section class="col-lg-12 connectedSortable">
                         <!-- Custom tabs (Charts with tabs)-->
                         <div class="card">
-
+                            @if($user_info < 1 )
                             <div class="card-body">
                                 <div>
                                     <h4> Complete your profile provide your present address and dress size <a href="{{route('customer.info')}}">Click Here</a></h4>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <!-- /.card -->
                         <!-- /.card -->

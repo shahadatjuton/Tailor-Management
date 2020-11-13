@@ -6,15 +6,18 @@ use App\Dress;
 use App\Http\Controllers\Controller;
 use App\Model\Cart;
 use App\Model\OrderDetails;
+use App\Notifications\NotifyChange;
 use App\Order;
 use App\OrderDetail;
 use App\Payment;
+use App\User;
 use App\UserInfo;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Stripe\Stripe;
+use Illuminate\Support\Facades\Notification;
+use Stripe;
 
 class CartController extends Controller
 {
@@ -150,52 +153,32 @@ class CartController extends Controller
 
     public function paymentStore(Request $request){
 
+//===================================================
+//        return $request;
+        $order = Order::find($request->order_id);
 
-        $this->validate($request, [
-            'card_no' => 'required',
-            'expiry_month' => 'required',
-            'expiry_year' => 'required',
-            'ccv' => 'required',
-        ]);
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        $stripe = Stripe::make('sk_test_51HgPI5FDuGHSpFLnoOntYhXp5WqtgT1CFZ34G2CAKeXE0OvwQ7rN8ajAdeO6ewxH5f579vjqOpsEqMmVxTQOqJ3Q00YHX94oqg');
-        try {
-            $token = $stripe->tokens()->create([
-                'card' => [
-                    'number'    => $request->get('card_no'),
-                    'exp_month' => $request->get('expiry_month'),
-                    'exp_year'  => $request->get('expiry_year'),
-                    'cvc'       => $request->get('cvv'),
-                ],
-            ]);
-            if (!isset($token['id'])) {
-                return Redirect::to('strips')->with('Token is not generate correct');
-            }
-//            $charge = $stripe->charges()->create([
-//                'card' => $token['id'],
-//                'currency' => 'USD',
-//                'amount'   => 20,
-//                'description' => 'Register Event',
-//            ]);
-            $payment = Payment::where('order_id',$request->order_id)->get();
-            $payment->trx_id = $token;
-            $payment->save();
-            if ($payment){
-                $order = Order::find($request->order_id);
-                $order->payment_status = 1;
-                $order->save();
-            }
+        $charge =  Stripe\Charge::create ([
 
-//            $charge = Charge::create(array(
-//                'amount' => 20,
-//                "source" => $token,
-//                'currency' => 'usd'
-//            ));
+            "amount" => $order->total_amount * 86,
 
-            return 'Payment Success';
-        } catch (\Exception $ex) {
-            return $ex->getMessage();
-        }
+            "currency" => "usd",
+
+           "source" => $request->stripeToken,
+
+           "description" => $order->invoice_no. "no invoice is done"
+
+       ]);
+
+        $payment = Payment::where('order_id',$order->id)->first();
+        $payment->trx_id = $charge->id;
+        $payment->save();
+        $order->payment_status = 1;
+        $order->save();
+        Toastr::success('payment sent successfully','Success!!');
+       return redirect()->route('customer.cart.order.list');
+//        =========================================
 
 }
 
@@ -208,6 +191,9 @@ class CartController extends Controller
         $order_detail = OrderDetail::find($request->id);
         $order_detail->size = $request->size;
         $order_detail->save();
+
+        $users = User::where('role_id',2)->get();
+        Notification::send($users, new NotifyChange($order_detail));
         Toastr::success('Dress Size Updated','Success!!');
         return redirect()->route('customer.cart.order.list');
     }
@@ -217,5 +203,18 @@ class CartController extends Controller
       $order->delete();
       Toastr::success('Order deleted successfully','Success');
       return redirect()->back();
+    }
+
+    public function orderAccept($id){
+
+        $order = Order::find($id);
+        if ($order->payment_status == 0){
+            Toastr::warning('Please Pay First To Complete The Order','Warning');
+            return redirect()->back();
+        }
+        $order->status = 2;
+        $order->save();
+        Toastr::success('Order Placed Successfully','Success!');
+        return redirect()->back();
     }
 }

@@ -20,6 +20,8 @@ class CreateOrdersTable extends Migration
             $table->double('total_amount');
             $table->date('delivery_date');
             $table->tinyInteger('payment_status')->default(0);
+            $table->date('possible_date')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

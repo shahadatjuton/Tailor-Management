@@ -129,6 +129,7 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
     Route::get('order/update/size/{id}','CartController@updateSize')->name('cart.order.size');
     Route::post('size/store/','CartController@storeSize')->name('cart.order.size.store');
     Route::get('order/destroy/{id}','CartController@orderDestroy')->name('order.destroy');
+    Route::get('order/accept/{id}','CartController@orderAccept')->name('order.accept');
 
 
 

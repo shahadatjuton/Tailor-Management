@@ -47,8 +47,8 @@
                         <th>Dress Name</th>
                         <th>Quantity</th>
                         <th>Total Amount</th>
-                        <th>Size</th>
                         <th>Instruction</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -59,8 +59,12 @@
                         <td>{{\App\Dress::find($order->dress_id)->title}}</td>
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->total}}</td>
-                        <td>{{$order->size}}</td>
                         <td>{{$order->instruction}}</td>
+                        <td>
+                            @if($order->status == 0)
+                                <p class="bg-warning">Size Requires Update</p>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{route('customer.cart.order.size',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>

@@ -50,7 +50,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Cart');
     }
     public function userInfo(){
-        return $this->belongsTo('App\UserInfo','user_id');
+        return $this->hasMany('App\UserInfo');
     }
     public function orders(){
         return $this->hasMany('App\Order');

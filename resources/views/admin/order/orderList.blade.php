@@ -61,7 +61,7 @@
                         <td>{{$order->user->name}}</td>
                         <td>{{$order->total_amount}}</td>
                         <td>
-                            @if($order->status == 0)
+                            @if($order->payment_status == 0)
                                 <div class="bg-warning">
                                     <p class="text-center">Unpaid</p>
                                 </div>

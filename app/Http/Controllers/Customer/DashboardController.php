@@ -15,7 +15,8 @@ use Intervention\Image\Facades\Image;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('customer.dashboard');
+        $user_info =  Auth::user()->userInfo->count();
+        return view('customer.dashboard',compact('user_info'));
     }
 
     public function customerInfo(){
