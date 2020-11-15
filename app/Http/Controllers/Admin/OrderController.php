@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Order;
 use App\Model\OrderDetails;
+use App\Notifications\NotifyDate;
 use App\Notifications\NotifyForSize;
 use App\OrderDetail;
 use App\User;
@@ -35,6 +36,8 @@ class OrderController extends Controller
         $order->possible_date = $request->date;
         $order->status = 1;
         $order->save();
+        $user = User::where('id',$order->user_id)->first();
+        $user->notify(new NotifyDate($order));
         Toastr::success('Delivery date set up successfully!','Success!!');
         return redirect()->route('admin.order.index');
 

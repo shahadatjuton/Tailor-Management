@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Cart;
 use App\Model\OrderDetails;
 use App\Notifications\NotifyChange;
+use App\Notifications\NotifyOrder;
 use App\Order;
 use App\OrderDetail;
 use App\Payment;
@@ -206,7 +207,6 @@ class CartController extends Controller
     }
 
     public function orderAccept($id){
-
         $order = Order::find($id);
         if ($order->payment_status == 0){
             Toastr::warning('Please Pay First To Complete The Order','Warning');
@@ -214,6 +214,9 @@ class CartController extends Controller
         }
         $order->status = 2;
         $order->save();
+
+        $users = User::where('role_id',2)->orWhere('role_id',1)->get();
+        Notification::send($users, new NotifyOrder($order ));
         Toastr::success('Order Placed Successfully','Success!');
         return redirect()->back();
     }

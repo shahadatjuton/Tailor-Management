@@ -42,7 +42,7 @@
                            alt="Dress Image"  width="140" height="120">
                   </div>
                   <a class="btn btn-success btn-sm float-right " href="{{route('admin.dress.index')}}">
-                      <i class="fa fa-list"> User Dress</i>
+                      <i class="fa fa-list">  Dress List</i>
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">

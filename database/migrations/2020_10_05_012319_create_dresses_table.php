@@ -20,6 +20,8 @@ class CreateDressesTable extends Migration
             $table->text('description');
             $table->double('price');
             $table->string('image');
+            $table->string('category');
+            $table->string('tag');
             $table->tinyInteger('status')->default(0);
             $table->integer('created_by');
             $table->timestamps();

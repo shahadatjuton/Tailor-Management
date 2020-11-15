@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>Role</label>
-                            <input type="email" name="email" class="form-control" value="{{$user->role->role_name}}">
+                            <input type="text" name="role" class="form-control" value="{{$user->role->role_name}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Upload Image</label>

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifyOrder extends Notification
+class NotifyDate extends Notification
 {
     use Queueable;
     public $order;
@@ -42,11 +42,13 @@ class NotifyOrder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Dear Sir!')
-            ->subject('Order Submitted')
-            ->line('This is to inform you that a new order has been submitted. Order no'.$this->order->invoice_no.
-                ' . To see the order click below:')
-            ->action('Click Here', url('#'));
+            ->greeting('Dear '.  $this->order->user->name.'!')
+            ->subject('Possible Delivery Date')
+            ->line('This is to inform you that your order no'.$this->order->invoice_no.
+                ' we are offering you to deliver the dresses on'.$this->order->possible_date)
+            ->action('Click Here', route('customer.cart.order.list'))
+
+            ->line('We are requesting you to confirm the order as sson as possible. Thank you!');
     }
 
     /**

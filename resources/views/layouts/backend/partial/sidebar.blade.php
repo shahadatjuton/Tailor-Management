@@ -224,6 +224,31 @@
                     </li>
 
                 @endif
+
+
+                <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
+                    <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Profile
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Change Password</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

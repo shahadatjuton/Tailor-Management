@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!-- logo -->
             <div class="site-logo">
-                <img src="{{asset('assets/frontend/')}}/img/logo.png" alt="logo">
+                <h2>Taylor Shop Management</h2>
             </div>
             <!-- responsive -->
             <div class="nav-switch">
@@ -12,7 +12,7 @@
             <div class="header-right">
                 <a href="{{route('customer.cart.index')}}" class="card-bag"><img src="{{asset('assets/frontend/images/bag.png')}}" alt="">
                     <span>{{\App\Model\Cart::where('user_id',Auth::id())->count()}}</span></a>
-                <a href="#" class="search"><img src="{{asset('assets/frontend/images/search.png')}}" alt=""></a>
+{{--                <a href="#" class="search"><img src="{{asset('assets/frontend/images/search.png')}}" alt=""></a>--}}
             </div>
             <!-- site menu -->
             <ul class="main-menu">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Dress;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         $dresses = Dress::where('status',1)->latest()->get();
-        return view('welcome',compact('dresses'));
+        $categories = Category::latest()->get();
+        return view('welcome',compact('dresses','categories'));
+    }
+
+    public function categoryWiseDress($category){
+        $category = $category;
+        $dresses = Dress::where('category',$category)->latest()->get();
+        $categories = Category::latest()->get();
+        return view('CategoryWiseDress',compact('dresses','categories','category'));
     }
 
     public function showDress($id){
