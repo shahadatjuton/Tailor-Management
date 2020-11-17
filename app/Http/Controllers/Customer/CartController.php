@@ -127,7 +127,7 @@ class CartController extends Controller
         $payment = new Payment();
         $payment->order_id=$order_id;
         $payment->user_id=Auth::id();
-        $payment->trx_id="trx-id";
+        $payment->trx_id="null";
         $payment->save();
 
         Cart::where('user_id', Auth::id())->delete();

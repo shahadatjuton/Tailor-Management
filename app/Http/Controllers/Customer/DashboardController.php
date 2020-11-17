@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Dress;
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\User;
 use App\UserInfo;
 use Brian2694\Toastr\Facades\Toastr;
@@ -15,8 +17,9 @@ use Intervention\Image\Facades\Image;
 class DashboardController extends Controller
 {
     public function index(){
+        $orders = Auth::user()->orders()->get();
         $user_info =  Auth::user()->userInfo->count();
-        return view('customer.dashboard',compact('user_info'));
+        return view('customer.dashboard',compact('user_info','orders'));
     }
 
     public function customerInfo(){

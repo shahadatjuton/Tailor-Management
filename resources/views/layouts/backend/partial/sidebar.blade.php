@@ -156,33 +156,7 @@
 
                 @elseif(Auth::id() == 2)
 {{--                Staff--}}
-                <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
-                    <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dress Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('staff.dress.index')}}" class="nav-link {{($route == "staff.dress.index")?'active':''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View Dress List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('staff.dress.create')}}" class="nav-link {{($route == "staff.dress.create")?'active':''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p> Create Dress</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-{{--    ====================== Customer =================================================--}}
-
-                @elseif(Auth::id() == 3)
-                    <li class="nav-item has-treeview {{($prefix == "customer/order")?'menu-open':''}}">
+                    <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -205,6 +179,26 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{($prefix == "staff/order")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "staff/order")?'active':''}}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Order Management
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('staff.order.index')}}" class="nav-link {{($route == "staff.order.index")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Order List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+{{--    ====================== Customer =================================================--}}
+
+                @elseif(Auth::id() == 3)
                     <li class="nav-item has-treeview {{($prefix == "order")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "order")?'active':''}}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>

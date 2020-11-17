@@ -108,6 +108,22 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
         Route::delete('destroy/{id}','DressController@destroy')->name('dress.destroy');
     });
 
+    Route::group(['prefix'=>'order'], function (){
+        Route::get('view','OrderController@index')->name('order.index');
+        Route::get('show/{id}','OrderController@show')->name('order.show');
+        Route::post('store/delivery-date/','OrderController@deliveryDateStore')->name('order.store');
+        Route::get('details/{id}','OrderController@orderDetails')->name('order.details');
+        Route::post('size/instruction/','OrderController@sizeInstruction')->name('order.instruction');
+
+        Route::get('create','OrderController@create')->name('order.create');
+        Route::get('edit/{id}','OrderController@edit')->name('order.edit');
+        Route::put('update/{id}','OrderController@update')->name('order.update');
+        Route::delete('destroy/{id}','OrderController@destroy')->name('order.destroy');
+        Route::get('pending/list','OrderController@pendingList')->name('order.pending');
+        Route::put('accept/{id}','OrderController@acceptDress')->name('order.accept');
+
+    });
+
 });
 
 Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', 'middleware'=>['auth','customer']], function (){
