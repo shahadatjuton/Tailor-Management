@@ -44,7 +44,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Category');
     }
     public function dresses(){
-        return $this->hasMany('App\Dress');
+        return $this->hasMany('App\Dress','created_by');
     }
     public function carts(){
         return $this->hasMany('App\Model\Cart');

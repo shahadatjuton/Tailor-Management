@@ -96,7 +96,7 @@
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <label>Select Possible Delivery Date</label>
-                                    <input type="date" name="date" class="form-control">
+                                    <input type="date" name="date" min="{{$today}}" class="form-control">
                                 </div>
                             </div>
                         </div>

@@ -136,7 +136,7 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
     Route::get('cart/view/','CartController@index')->name('cart.index');
     Route::post('dress/{id}/','CartController@store')->name('cart.store');
     Route::get('cart/{id}/','CartController@destroy')->name('cart.destroy');
-    Route::get('cart/clear/','CartController@clear')->name('cart.clear');
+    Route::get('clear/cart/','CartController@clear')->name('cart.clear');
 
     Route::get('checkout/','CartController@checkout')->name('cart.checkout');
     Route::post('store/order/','CartController@order')->name('cart.order');

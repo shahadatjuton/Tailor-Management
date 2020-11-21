@@ -17,10 +17,22 @@
             <!-- site menu -->
             <ul class="main-menu">
                 <li class="active"><a href="{{route('home')}}">Home</a></li>
-                @if(!Auth::user())
-                <li><a href="{{route('register')}}">Registration</a></li>
+                @if(Auth::user())
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
                 @endif
+                <li><a href="{{route('register')}}">Registration</a></li>
                 <li><a href="{{route('login')}}">Log In</a></li>
+
             </ul>
         </div>
     </header>

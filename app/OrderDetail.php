@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     public function dress(){
-        return $this->belongsTo('App\Dress');
+        return $this->belongsTo('App\Dress','dress_id');
     }
 
     public function order(){

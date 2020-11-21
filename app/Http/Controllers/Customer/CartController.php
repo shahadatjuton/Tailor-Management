@@ -8,6 +8,7 @@ use App\Model\Cart;
 use App\Model\OrderDetails;
 use App\Notifications\NotifyChange;
 use App\Notifications\NotifyOrder;
+use App\Notifications\NotifyPayment;
 use App\Order;
 use App\OrderDetail;
 use App\Payment;
@@ -24,14 +25,14 @@ class CartController extends Controller
 {
     public function index(){
        $carts = Cart::where('user_id',Auth::id())->get();
-        return view('cart.cart',compact('carts'));
+        $total_amount = $carts->sum('total');
+        return view('cart.cart',compact('carts','total_amount'));
     }
 
     public function store(Request $request, $id){
 
         $this->validate($request, [
-            'quantity'=> 'required',
-            'date'=> 'required',
+            'quantity'=> 'required|min:1',
             'size'=> 'required',
         ]);
         $dress = Dress::find($id);
@@ -63,8 +64,9 @@ class CartController extends Controller
         $carts= Cart::where('user_id',Auth::id())->get();
         $total_item = $carts->sum('quantity');
         $total_amount = $carts->sum('total');
+        $today = Carbon::now();
 //        $cart_item = Cart::where('user_id',Auth::id())->sum('quantity');
-        return view('cart.checkout',compact('total_amount','total_item','user_info'));
+        return view('cart.checkout',compact('total_amount','total_item','user_info','today'));
     }
 
     public function order(Request $request){
@@ -76,7 +78,7 @@ class CartController extends Controller
             'road'=>'required',
             'zone'=>'required',
             'city'=>'required',
-            'date'=>'required',
+            'date'=>'required|date|after:yesterday',
         ]);
         if ( UserInfo::where('user_id',Auth::id())->first()->count() < 1){
             $info = new  UserInfo();
@@ -177,6 +179,10 @@ class CartController extends Controller
         $payment->save();
         $order->payment_status = 1;
         $order->save();
+
+        $user = User::where('id',$order->user_id)->first();
+        $user->notify(new NotifyPayment($order, $user));
+
         Toastr::success('payment sent successfully','Success!!');
        return redirect()->route('customer.cart.order.list');
 //        =========================================

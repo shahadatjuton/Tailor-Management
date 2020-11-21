@@ -35,14 +35,14 @@
                                 @csrf
                                 <div class="form-row">
                                     <!-- /.form-group -->
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-8 offset-2">
                                         <label>Quantity</label>
                                         <input type="number" name="quantity" class="form-control" min="1">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Expected Delivery Date</label>
-                                        <input type="date" name="date" class="form-control" >
-                                    </div>
+{{--                                    <div class="form-group col-md-6">--}}
+{{--                                        <label>Expected Delivery Date</label>--}}
+{{--                                        <input type="date" name="date" class="form-control" >--}}
+{{--                                    </div>--}}
                                     <div class="form-group col-md-8 offset-2">
                                         <label>Dress Size</label>
                                             <textarea  name="size" rows="3" cols="30">

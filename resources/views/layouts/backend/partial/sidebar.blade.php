@@ -37,7 +37,7 @@
                     <ul class="nav nav-treeview">
                     </ul>
                 </li>
-@if(Auth::id() == 1)
+@if(Auth::user()->role_id == 1)
                 <li class="nav-item has-treeview {{($prefix == "admin/user")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/user")?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -153,8 +153,32 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> Change Password</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                @elseif(Auth::id() == 2)
+
+                @elseif(Auth::user()->role_id == 2)
 {{--                Staff--}}
                     <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
@@ -196,9 +220,28 @@
                             </li>
                         </ul>
                     </li>
-{{--    ====================== Customer =================================================--}}
+                    <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                @elseif(Auth::id() == 3)
+
+                    {{--    ====================== Customer =================================================--}}
+
+                @elseif(Auth::user()->role_id == 3)
                     <li class="nav-item has-treeview {{($prefix == "order")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "order")?'active':''}}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -216,33 +259,34 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> Change Password</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                 @endif
 
 
-                <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
-                    <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Profile
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View Profile</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p> Change Password</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

@@ -70,9 +70,9 @@
                             <a href="{{route('admin.dress.show',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{route('admin.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
-                                <i class="fa fa-edit"></i>
-                            </a>
+{{--                            <a href="{{route('admin.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">--}}
+{{--                                <i class="fa fa-edit"></i>--}}
+{{--                            </a>--}}
                             <button type="button"  class="btn btn-danger waves-effect btn-sm" onclick="deletedata({{$dress->id}})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>

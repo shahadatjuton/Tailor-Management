@@ -57,6 +57,8 @@ class DressController extends Controller
         $dress->created_by = Auth::id();
         $dress->image = $image_name;
         $dress->status = 0;
+        $dress->category = $request->category;
+        $dress->tag = $request->tag;
         $dress->save();
         Toastr::success('Dress is Created','successful!');
         return redirect()->route('staff.dress.index');

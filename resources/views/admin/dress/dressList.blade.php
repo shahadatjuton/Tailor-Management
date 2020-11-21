@@ -64,15 +64,17 @@
                         <td>{{$dress->title}}</td>
                         <td>{{$dress->description}}</td>
                         <td>{{$dress->price}}</td>
-                        <td>{{$dress->created_by}}</td>
+                        <td>{{$dress->user->name}}</td>
                         <td>{{$dress->created_at->toDateString()}}</td>
                         <td>
                             <a href="{{route('admin.dress.show',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-eye"></i>
                             </a>
+                            @if($dress->created_by == 1)
                             <a href="{{route('admin.dress.edit',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>
+                            @endif
                             <button type="button"  class="btn btn-danger waves-effect btn-sm" onclick="deletedata({{$dress->id}})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>

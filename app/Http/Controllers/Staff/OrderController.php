@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\NotifyDate;
 use App\Notifications\NotifyForSize;
 use App\OrderDetail;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,14 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = \App\Order::latest()->get();
-        return view('admin.order.orderList',compact('orders'));
+        return view('staff.order.orderList',compact('orders'));
     }
 
     public function show($id){
 
         $orderDetails = OrderDetail::where('order_id',$id)->get();
         $Order = \App\Order::find($id);
-        return view('admin.order.orderDetails',compact('orderDetails','Order'));
+        return view('staff.order.orderDetails',compact('orderDetails','Order'));
     }
 
     public function deliveryDateStore(Request $request){
@@ -41,7 +42,7 @@ class OrderController extends Controller
 
     public function orderDetails($id){
         $order_details = OrderDetail::find($id);
-        return view('admin.order.orderShow',compact('order_details'));
+        return view('staff.order.orderShow',compact('order_details'));
     }
 
     public function sizeInstruction(Request $request){
@@ -56,6 +57,6 @@ class OrderController extends Controller
         $user = User::where('id',$order->user_id)->first();
         $user->notify(new NotifyForSize($order_details));
         Toastr::success('Instruction given with success','Successfully');
-        return redirect()->route('admin.order.index');
+        return redirect()->route('staff.order.index');
     }
 }

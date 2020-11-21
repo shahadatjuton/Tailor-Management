@@ -31,9 +31,11 @@ class DressController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description'=>'required',
-            'price'=>'required',
+            'price'=>'required|min:1',
             'category'=> 'required',
             'tag'=> 'required',
+            'image'=> 'required|mimes:jpeg,jpg,png',
+
         ]);
         $image = $request->file('image');
         $slug = str::slug($request->title);
@@ -76,9 +78,11 @@ class DressController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description'=>'required',
-            'price'=>'required',
+            'price'=>'required|min:1',
             'category'=> 'required',
             'tag'=> 'required',
+            'image'=> 'mimes:jpeg,jpg,png',
+
         ]);
         $dress = Dress::findOrFail($id);
 

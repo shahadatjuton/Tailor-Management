@@ -46,7 +46,7 @@
                 <tr>
                     <td colspan="3"></td>
                     <td>Grand Total </td>
-                    <td>56789 Taka</td>
+                    <td>{{$total_amount}} Taka</td>
                 </tr>
                 @endif
                 </tbody>
