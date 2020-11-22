@@ -15,9 +15,13 @@
 {{--                <a href="#" class="search"><img src="{{asset('assets/frontend/images/search.png')}}" alt=""></a>--}}
             </div>
             <!-- site menu -->
+
             <ul class="main-menu">
                 <li class="active"><a href="{{route('home')}}">Home</a></li>
                 @if(Auth::user())
+                    @php
+                        $user_role = Str::lower(Auth::user()->role->role_name);
+                    @endphp
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -29,10 +33,11 @@
                             @csrf
                         </form>
                     </li>
-                @endif
+                    <li><a href="{{route($user_role.".dashboard")}}">Dashboard</a></li>
+                @else
                 <li><a href="{{route('register')}}">Registration</a></li>
                 <li><a href="{{route('login')}}">Log In</a></li>
-
+                @endif
             </ul>
         </div>
     </header>

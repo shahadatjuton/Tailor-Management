@@ -39,51 +39,77 @@
               <div class="card-header">
                <h4>Dress List</h4>
               </div><!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>SL No</th>
-                        <th>Invoice No</th>
-                        <th>Total Amount</th>
-                        <th>Payment Status</th>
-                        <th>Expected Date</th>
-                        <th>Delivery Date</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($orders as $key=>$order)
-                    <tr>
-                        <td>{{$key +1}}</td>
-                        <td>{{$order->invoice_no}}</td>
-                        <td>{{$order->total_amount}}</td>
-                        <td>
-                            @if($order->payment_status == 0)
-                                <div class="bg-warning">
-                                    <p class="text-center">Unpaid</p>
-                                </div>
-                            @else
-                                <div class="bg-success">
-                                    <p class="text-center">Paid</p>
-                                </div>
-                            @endif
-                        </td>
-                        <td>{{$order->delivery_date}}</td>
-                        <td>{{$order->possible_date}}</td>
-                        <td>
-                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
-                                <i class="fas fa-check-circle"></i>
-                            </a>
-                            <a href="{{route('staff.order.show',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>SL No</th>
+                            <th>Invoice No</th>
+                            {{--                        <th>Customer Name</th>--}}
+                            <th>Total Amount</th>
+                            <th>Payment Status</th>
+                            <th>Expected Date</th>
+                            <th>Proposed Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orders as $key=>$order)
+                            <tr>
+                                <td>{{$key +1}}</td>
+                                <td>{{$order->invoice_no}}</td>
+                                {{--                        <td>{{$order->user->name}}</td>--}}
+                                <td>{{$order->total_amount}}</td>
+                                <td>
+                                    @if($order->payment_status == 0)
+                                        <div class="bg-warning">
+                                            <p class="text-center">Unpaid</p>
+                                        </div>
+                                    @else
+                                        <div class="bg-success">
+                                            <p class="text-center">Paid</p>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>{{$order->delivery_date}}</td>
+                                <td>{{$order->possible_date}}</td>
+                                <td>
+                                    @if($order->status == 0)
+                                        <div class="bg-warning">
+                                            <p class="text-center">Pending</p>
+                                        </div>
+                                    @elseif($order->status == 1)
+                                        <div class="bg-primary">
+                                            <p class="text-center">proposed Date</p>
+                                        </div>
+                                    @elseif($order->status == 2)
+                                        <div class="bg-warning">
+                                            <p class="text-center">Updated</p>
+                                        </div>
+                                    @elseif($order->status == 3)
+                                        <div class="bg-warning">
+                                            <p class="text-center">Change Require</p>
+                                        </div>
+                                    @else
+                                        <div class="bg-success">
+                                            <p class="text-center">Accepted</p>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('staff.order.accept',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
+                                        <i class="fas fa-check-circle"></i>
+                                    </a>
+                                    <a href="{{route('staff.order.show',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         @endforeach
-                    </tbody>
-                </table>
-              </div><!-- /.card-body -->
+                        </tbody>
+                    </table>
+                </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
             <!-- /.card -->

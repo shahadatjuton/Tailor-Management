@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use App\Notifications\NotifyDate;
 use App\Notifications\NotifyForSize;
+use App\Notifications\NotifyOrderConfirmation;
 use App\OrderDetail;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -58,5 +59,16 @@ class OrderController extends Controller
         $user->notify(new NotifyForSize($order_details));
         Toastr::success('Instruction given with success','Successfully');
         return redirect()->route('staff.order.index');
+    }
+
+    public function acceptOrder($id){
+        $order = \App\Order::findOrFail($id);
+        $order->status = 4;
+        $order->save();
+        $user = User::where('id',$order->user_id)->first();
+        $user->notify(new NotifyOrderConfirmation($order));
+        Toastr::success('Order Accepted','Accept');
+        return redirect()->back();
+
     }
 }

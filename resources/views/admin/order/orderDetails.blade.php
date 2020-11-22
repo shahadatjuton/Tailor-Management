@@ -49,6 +49,7 @@
                         <th>Quantity</th>
                         <th>Total Amount</th>
                         <th>Size</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -61,6 +62,21 @@
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->total}}</td>
                         <td>{{$order->size}}</td>
+                        <td>
+                            @if($order->status == 1)
+                                <div class="bg-warning">
+                                    <p>Size requires changes</p>
+                                </div>
+                            @elseif($order->status == 2)
+                                    <div class="bg-primary">
+                                        <p>Size updated</p>
+                                    </div>
+                            @else
+                                   <div class="bg-success">
+                                        <p>All Right</p>
+                                    </div>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{route('admin.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="show">
                                 <i class="far fa-eye"></i>
@@ -84,7 +100,7 @@
                             </div>
                             <div class="form-group col-md-4 offset-5">
                                 <a href="{{route('admin.order.index')}}" class="btn btn-dark">Back</a>
-                                <button type="submit" class="btn btn-success">Create</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
 
                         </div>

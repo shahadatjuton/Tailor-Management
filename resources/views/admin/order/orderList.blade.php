@@ -49,7 +49,8 @@
                         <th>Total Amount</th>
                         <th>Payment Status</th>
                         <th>Expected Date</th>
-                        <th>Delivery Date</th>
+                        <th>Proposed Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -74,7 +75,30 @@
                         <td>{{$order->delivery_date}}</td>
                         <td>{{$order->possible_date}}</td>
                         <td>
-                            <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
+                            @if($order->status == 0)
+                                <div class="bg-warning">
+                                    <p class="text-center">Pending</p>
+                                </div>
+                            @elseif($order->status == 1)
+                                <div class="bg-primary">
+                                    <p class="text-center">proposed Date</p>
+                                </div>
+                            @elseif($order->status == 2)
+                                <div class="bg-warning">
+                                    <p class="text-center">Updated</p>
+                                </div>
+                            @elseif($order->status == 3)
+                                <div class="bg-warning">
+                                    <p class="text-center">Change Require</p>
+                                </div>
+                            @else
+                                <div class="bg-success">
+                                    <p class="text-center">Accepted</p>
+                                </div>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{route('admin.order.accept',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
                                 <i class="fas fa-check-circle"></i>
                             </a>
                             <a href="{{route('admin.order.show',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">

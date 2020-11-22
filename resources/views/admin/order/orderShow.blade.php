@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group col-md-4 offset-5">
                                 <a href="{{route('admin.order.index')}}" class="btn btn-dark">Back</a>
-                                <button type="submit" class="btn btn-success">Create</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
 
                         </div>

@@ -90,9 +90,24 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::put('update/{id}','OrderController@update')->name('order.update');
         Route::delete('destroy/{id}','OrderController@destroy')->name('order.destroy');
         Route::get('pending/list','OrderController@pendingList')->name('order.pending');
-        Route::put('accept/{id}','OrderController@acceptDress')->name('order.accept');
+        Route::get('accept/{id}','OrderController@acceptOrder')->name('order.accept');
 
     });
+
+
+    Route::group(['prefix'=>'report'], function (){
+        Route::get('total/order/','ReportController@totalOrder')->name('report.total.order');
+        Route::get('lastWeek/order/','ReportController@lastWeek')->name('report.lastWeek.order');
+        Route::get('lastMonth/order/','ReportController@lastMonth')->name('report.lastMonth.order');
+        Route::get('lastYear/order/','ReportController@lastYear')->name('report.lastYear.order');
+
+        Route::get('total/design/','ReportController@totalDesign')->name('report.total.design');
+        Route::get('pending/design/','ReportController@pendingDesign')->name('report.pending.design');
+        Route::get('total/staff/','ReportController@totalStaff')->name('report.total.staff');
+
+
+    });
+
 });
 
 Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middleware'=>['auth','staff']], function (){
@@ -120,7 +135,8 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
         Route::put('update/{id}','OrderController@update')->name('order.update');
         Route::delete('destroy/{id}','OrderController@destroy')->name('order.destroy');
         Route::get('pending/list','OrderController@pendingList')->name('order.pending');
-        Route::put('accept/{id}','OrderController@acceptDress')->name('order.accept');
+        Route::get('accept/{id}','OrderController@acceptOrder')->name('order.accept');
+
 
     });
 

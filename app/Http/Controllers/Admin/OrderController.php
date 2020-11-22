@@ -7,6 +7,7 @@ use App\Model\Order;
 use App\Model\OrderDetails;
 use App\Notifications\NotifyDate;
 use App\Notifications\NotifyForSize;
+use App\Notifications\NotifyOrderConfirmation;
 use App\OrderDetail;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -51,15 +52,26 @@ class OrderController extends Controller
     public function sizeInstruction(Request $request){
         $order_details = OrderDetail::find($request->order_details_id);
         $order = \App\Order::where('id',$order_details->order_id)->first();
-        $order->status = 0;
+        $order->status = 3;
         $order->save();
 
         $order_details->instruction = $request->instruction;
-        $order_details->status = 0;
+        $order_details->status = 1;
         $order_details->save();
         $user = User::where('id',$order->user_id)->first();
         $user->notify(new NotifyForSize($order_details));
         Toastr::success('Instruction given with success','Successfully');
         return redirect()->route('admin.order.index');
+    }
+
+    public function acceptOrder($id){
+        $order = \App\Order::findOrFail($id);
+        $order->status = 4;
+        $order->save();
+        $user = User::where('id',$order->user_id)->first();
+        $user->notify(new NotifyOrderConfirmation($order));
+        Toastr::success('Order Accepted','Accept');
+        return redirect()->back();
+
     }
 }

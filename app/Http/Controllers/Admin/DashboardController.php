@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $last_month = Carbon::now()->subDays(30);
         $last_year = Carbon::now()->subDays(365);
 
-        $data['total_order'] = Order::where('status',2)->count();
+        $data['total_order'] = Order::where('status',4)->count();
         $data['last_week_order'] = Order::where('status',2)->where('created_at', '>=',$last_week)->count();
         $data['last_month_order'] = Order::where('status',2)->where('created_at', '>=',$last_month)->count();
         $data['last_year_order'] = Order::where('status',2)->where('created_at', '>=',$last_year)->count();

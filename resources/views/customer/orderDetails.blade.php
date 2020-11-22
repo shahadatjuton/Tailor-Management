@@ -59,10 +59,28 @@
                         <td>{{\App\Dress::find($order->dress_id)->title}}</td>
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->total}}</td>
-                        <td>{{$order->instruction}}</td>
                         <td>
-                            @if($order->status == 0)
-                                <p class="bg-warning">Size Requires Update</p>
+                            @if($order->instruction==null)
+                                <div class="bg-success">
+                                    <p>All Right</p>
+                                </div>
+                             @else
+                            {{Str::limit($order->instruction,20)}}
+                            @endif
+                        </td>
+                        <td>
+                            @if($order->status == 1)
+                                <div class="bg-warning">
+                                    <p>Size requires changes</p>
+                                </div>
+                            @elseif($order->status == 2)
+                                <div class="bg-primary">
+                                    <p>Size updated</p>
+                                </div>
+                            @else
+                                <div class="bg-success">
+                                    <p>All Right</p>
+                                </div>
                             @endif
                         </td>
                         <td>
@@ -70,7 +88,6 @@
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>
-
                     </tr>
                         @endforeach
                     </tbody>

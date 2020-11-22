@@ -144,7 +144,7 @@ class CartController extends Controller
     }
 
     public function orderDetails($id){
-         $orderDetails = OrderDetail::where('order_id',$id)->get();
+        $orderDetails = OrderDetail::where('order_id',$id)->get();
         return view('customer.orderDetails',compact('orderDetails'));
     }
 
@@ -196,7 +196,12 @@ class CartController extends Controller
 
     public function storeSize(Request $request){
         $order_detail = OrderDetail::find($request->id);
+
+        $order = \App\Order::where('id',$order_detail->order_id)->first();
+        $order->status = 2;
+        $order->save();
         $order_detail->size = $request->size;
+        $order_detail->status = 2;
         $order_detail->save();
 
         $users = User::where('role_id',2)->get();

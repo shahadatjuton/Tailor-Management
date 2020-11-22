@@ -47,8 +47,9 @@
                         <th>Invoice No</th>
                         <th>Total Amount</th>
                         <th>Payment Status</th>
-                        <th>Order Date</th>
-                        <th>Delivery Date</th>
+                        <th>Expected Date</th>
+                        <th>Proposed Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -69,8 +70,27 @@
                                 </div>
                             @endif
                         </td>
-                        <td>{{$order->created_at->toDateString()}}</td>
+                        <td>{{$order->delivery_date}}</td>
                         <td>{{$order->possible_date}}</td>
+                        <td>
+                            @if($order->status == 0)
+                                <div class="bg-warning">
+                                    <p class="text-center">Pending</p>
+                                </div>
+                            @elseif($order->status == 1)
+                                <div class="bg-primary">
+                                    <p class="text-center">proposed Date</p>
+                                </div>
+                            @elseif($order->status == 2)
+                                <div class="bg-success">
+                                    <p class="text-center">Accepted</p>
+                                </div>
+                            @else
+                                <div class="bg-warning">
+                                    <p class="text-center">Change Require</p>
+                                </div>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Pay">
                                 Pay
