@@ -20,7 +20,14 @@
                 <div class="footer-widget">
                     <h6 class="fw-title">Categories</h6>
                     @php
-                        $categories = \App\Category::all();
+
+                            $count = \App\Category::latest()->get()->count();
+                            if ($count > 5)
+                            {
+                                $categories = \App\Category::latest()->take(5)->get();
+                            }else{
+                               $categories = \App\Category::latest()->get();
+                            }
                     @endphp
                     <ul>
                         @foreach($categories as $category)

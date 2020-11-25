@@ -28,7 +28,14 @@ class HomeController extends Controller
     {
         $sliders = Setting::where('status',1)->latest()->get();
         $dresses = Dress::where('status',1)->latest()->get();
-        $categories = Category::latest()->get();
+        $count = Category::latest()->get()->count();
+        if ($count > 5)
+        {
+            $categories = Category::latest()->take(5)->get();
+        }else{
+           $categories = Category::latest()->get();
+       }
+
         return view('welcome',compact('dresses','categories','sliders'));
     }
 
