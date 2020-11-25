@@ -13,7 +13,7 @@
         <form  action="{{route('customer.cart.order')}}" method="post" class="checkout-form" id="payment-form">
             @csrf
             <div class="row">
-                @if($user_info->count() > 0)
+                @if($user_info !== null)
                     <div class="col-lg-6">
                         <h4 class="checkout-title">Billing Address</h4>
                         <div class="row">
@@ -53,19 +53,19 @@
                                 <input type="text" placeholder="E-mail *" name="email" value="{{Auth::user()->email}}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="phone" value="{{$user_info->phone}}">
+                                <input type="text" placeholder="Phone *" name="phone">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="house" value="{{$user_info->house}}">
+                                <input type="text" placeholder="Phone *" name="house">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="road" value="{{$user_info->road}}">
+                                <input type="text" placeholder="Phone *" name="road">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="zone" value="{{$user_info->zone}}">
+                                <input type="text" placeholder="Phone *" name="zone">
                             </div>
                             <div class="col-md-12">
-                                <input type="text" placeholder="Phone *"  class="text-center" name="city" value="{{$user_info->city}}">
+                                <input type="text" placeholder="Phone *"  class="text-center" name="city" >
                             </div>
                         </div>
                     </div>
