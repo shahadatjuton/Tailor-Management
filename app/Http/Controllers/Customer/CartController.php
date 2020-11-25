@@ -80,7 +80,7 @@ class CartController extends Controller
             'city'=>'required',
             'date'=>'required|date|after:yesterday',
         ]);
-        if ( UserInfo::where('user_id',Auth::id())->first()->count() < 1){
+        if ( UserInfo::where('user_id',Auth::id())->first() == null){
             $info = new  UserInfo();
             $info->user_id = Auth::id();
             $info->size = $request->size;
@@ -95,7 +95,7 @@ class CartController extends Controller
 // ================      Order Number ========================
         $order = Order::all()->count();
         if ($order > 0){
-            $order_id = Order::where('user_id',Auth::id())->get()->last()->id;
+            $order_id = Order::get()->last()->id;
         }
         else{
             $order_id = 0;

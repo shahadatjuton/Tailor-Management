@@ -215,7 +215,18 @@
                     </form>
 
                 </div>
+                <div class="row">
+                    @php
+                        use Illuminate\Support\Str;
+                        $user_role = Str::lower(Auth::user()->role->role_name);
+                    @endphp
+                    <div class="col-xs-12">
 
+                        <a class="btn  btn-lg btn-block" href="{{route($user_role.".dashboard")}}">Back To Dashboard</a>
+
+                    </div>
+
+                </div>
             </div>
 
         </div>

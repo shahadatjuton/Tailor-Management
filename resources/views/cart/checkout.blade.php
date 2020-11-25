@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 @else
-                <h4>Please fill the form manually or update your information</h4>
+                <h4>Please fill the form manually or <a href="{{route('customer.info')}}">update</a> your information</h4>
                     <div class="col-lg-6">
                         <h4 class="checkout-title">Billing Address</h4>
                         <div class="row">
@@ -56,16 +56,19 @@
                                 <input type="text" placeholder="Phone *" name="phone">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="house">
+                                <input type="text" placeholder="house *" name="house">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="road">
+                                <input type="text" placeholder="road *" name="road">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" placeholder="Phone *" name="zone">
+                                <input type="text" placeholder="zone *" name="zone">
                             </div>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Phone *"  class="text-center" name="city" >
+                            <div class="col-md-6">
+                                <input type="text" placeholder="city *"  class="text-center" name="city" >
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="Body-size *"  class="text-center" name="size" >
                             </div>
                         </div>
                     </div>
