@@ -51,10 +51,7 @@
                                 <b>E-mail</b> <a class="float-right">{{$user->email}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Phone</b> <a class="float-right">{{$user->phone}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Address</b> <a class="float-right">{{$user->address}}</a>
+                                <b>Role</b> <a class="float-right">{{$user->role->role_name}}</a>
                             </li>
                         </ul>
 
@@ -76,42 +73,5 @@
   @endsection
 
 @push('js')
-    <script type="text/javascript">
 
-        function deletedata(id) {
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this data!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Delete',
-                cancelButtonText: 'Cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-data-' + id).submit();
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
-                    )
-                }
-            })
-        }
-
-    </script>
 @endpush

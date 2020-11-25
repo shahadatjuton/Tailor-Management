@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Dress;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,9 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $sliders = Setting::where('status',1)->latest()->get();
         $dresses = Dress::where('status',1)->latest()->get();
         $categories = Category::latest()->get();
-        return view('welcome',compact('dresses','categories'));
+        return view('welcome',compact('dresses','categories','sliders'));
     }
 
     public function categoryWiseDress($category){

@@ -144,8 +144,9 @@ class CartController extends Controller
     }
 
     public function orderDetails($id){
+        $order = Order::find($id);
         $orderDetails = OrderDetail::where('order_id',$id)->get();
-        return view('customer.orderDetails',compact('orderDetails'));
+        return view('customer.orderDetails',compact('orderDetails','order'));
     }
 
     public function payment($id){

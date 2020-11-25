@@ -24,7 +24,7 @@ class DressController extends Controller
     public function create(){
         $categories = Category::latest()->get();
         $tags = Tag::latest()->get();
-        return view('staff.dress.CreateDress',compact('categories','tags'));
+        return view('staff.dress.createDress',compact('categories','tags'));
     }
 
     public function store( Request $request){

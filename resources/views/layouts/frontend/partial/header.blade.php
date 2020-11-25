@@ -33,7 +33,7 @@
                             @csrf
                         </form>
                     </li>
-                    <li><a href="{{route($user_role.".dashboard")}}">Dashboard</a></li>
+                    <li><a href="{{route($user_role.".dashboard")}}">{{Auth::user()->name}}</a></li>
                 @else
                 <li><a href="{{route('register')}}">Registration</a></li>
                 <li><a href="{{route('login')}}">Log In</a></li>

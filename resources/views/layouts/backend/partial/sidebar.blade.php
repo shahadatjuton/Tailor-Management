@@ -180,6 +180,29 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{($prefix == "settings")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "settings")?'active':''}}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Settings
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.slider.list')}}" class="nav-link {{($route == "admin.slider.list")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> Slider List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.slider.create')}}" class="nav-link {{($route == "admin.slider.create")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create Slider</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
 
                 @elseif(Auth::user()->role_id == 2)

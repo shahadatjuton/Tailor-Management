@@ -4,26 +4,38 @@
 
     <section class="hero-section set-bg" data-setbg="img/bg.jpg">
         <div class="hero-slider owl-carousel">
+            @foreach($sliders as $slider)
             <div class="hs-item">
-                <div class="hs-left"><img src="{{asset('assets/frontend/')}}/img/slider-img.png" alt=""></div>
+                <div class="hs-left"><img src="{{asset('storage/slider/'.$slider->image)}}" alt="{{$slider->title}}"></div>
                 <div class="hs-right">
                     <div class="hs-content">
-                        <div class="price">from $19.90</div>
-                        <h2><span>2018</span> <br>summer collection</h2>
-                        <a href="" class="site-btn">Shop NOW!</a>
+                        <div class="price">{{$slider->title}}</div>
+                        <h2>{{$slider->description}}</h2>
+                        <p class="site-btn">Shop NOW!</p>
                     </div>
                 </div>
             </div>
-            <div class="hs-item">
-                <div class="hs-left"><img src="{{asset('assets/frontend/')}}/img/slider-img.png" alt=""></div>
-                <div class="hs-right">
-                    <div class="hs-content">
-                        <div class="price">from $19.90</div>
-                        <h2><span>2018</span> <br>summer collection</h2>
-                        <a href="" class="site-btn">Shop NOW!</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+{{--            <div class="hs-item">--}}
+{{--                <div class="hs-left"><img src="{{asset('assets/frontend/')}}/img/slider-img.png" alt=""></div>--}}
+{{--                <div class="hs-right">--}}
+{{--                    <div class="hs-content">--}}
+{{--                        <div class="price">from $19.90</div>--}}
+{{--                        <h2>summer collection</h2>--}}
+{{--                        <p class="site-btn">Shop NOW!</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="hs-item">--}}
+{{--                <div class="hs-left"><img src="{{asset('assets/frontend/')}}/img/slider-img.png" alt=""></div>--}}
+{{--                <div class="hs-right">--}}
+{{--                    <div class="hs-content">--}}
+{{--                        <div class="price">from $19.90</div>--}}
+{{--                        <h2><span>2018</span> <br>summer collection</h2>--}}
+{{--                        <p class="site-btn">Shop NOW!</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </section>
 <!-- Product section -->

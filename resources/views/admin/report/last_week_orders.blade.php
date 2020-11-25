@@ -23,7 +23,7 @@
             <p style="margin-left: 400px">Last Week Orders</p>
             <div class="text-right">
 {{--                <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>--}}
-                <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                <a class="btn btn-info" href="{{route('admin.pdf.lastWeek.order')}}"><i class="fa fa-file-pdf-o"></i> Export as PDF</a>
             </div>
             <hr>
         </div>

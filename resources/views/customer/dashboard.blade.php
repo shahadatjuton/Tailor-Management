@@ -1,4 +1,10 @@
 @extends('layouts.backend.master')
+@section('title', 'Dashboard')
+
+@push('css')
+
+@endpush
+
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -38,7 +44,7 @@
                             @if($user_info < 1 )
                             <div class="card-body">
                                 <div>
-                                    <h4> Complete your profile provide your present address and dress size <a href="{{route('customer.info')}}">Click Here</a></h4>
+                                    <h4> Complete your profile by providing your present address and dress size <a href="{{route('customer.info')}}">Click Here</a></h4>
                                 </div>
                             </div>
                             @endif
@@ -52,6 +58,48 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-6 offset-md-3 ">
+
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="{{asset('storage/profile/'.Auth::user()->image)}}" alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
+
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Name</b> <a class="float-right">{{Auth::user()->name}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>E-mail</b> <a class="float-right">{{Auth::user()->email}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Role</b> <a class="float-right">{{Auth::user()->role->role_name}}</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </section>
+                    <!-- /.Left col -->
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
     </div>
     <!-- /.content-wrapper -->
 @endsection

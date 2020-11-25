@@ -108,6 +108,27 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
 
     });
 
+    Route::group(['prefix'=>'pdf'], function (){
+        Route::get('pdf/total/order/','PdfController@totalOrder')->name('pdf.total.order');
+        Route::get('pdf/lastWeek/order/','PdfController@lastWeek')->name('pdf.lastWeek.order');
+        Route::get('pdf/lastMonth/order/','PdfController@lastMonth')->name('pdf.lastMonth.order');
+        Route::get('pdf/lastYear/order/','PdfController@lastYear')->name('pdf.lastYear.order');
+
+        Route::get('pdf/total/design/','PdfController@totalDesign')->name('pdf.total.design');
+        Route::get('pdf/pending/design/','PdfController@pendingDesign')->name('pdf.pending.design');
+        Route::get('pdf/total/staff/','PdfController@totalStaff')->name('pdf.total.staff');
+
+    });
+
+    Route::group(['prefix'=>'settings'], function (){
+        Route::get('slider/create','SettingsController@slider')->name('slider.create');
+        Route::post('slider/store','SettingsController@sliderStore')->name('slider.store');
+        Route::get('slider/list','SettingsController@sliderList')->name('slider.list');
+        Route::get('slider/edit/{id}','SettingsController@sliderEdit')->name('slider.edit');
+        Route::put('slider/update/{id}','SettingsController@sliderUpdate')->name('slider.update');
+        Route::delete('delete/slider/{id}','SettingsController@sliderDestroy')->name('slider.destroy');
+    });
+
 });
 
 Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middleware'=>['auth','staff']], function (){
@@ -137,6 +158,21 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
         Route::get('pending/list','OrderController@pendingList')->name('order.pending');
         Route::get('accept/{id}','OrderController@acceptOrder')->name('order.accept');
 
+    });
+
+
+    Route::group(['prefix'=>'report'], function (){
+        Route::get('total/order/','ReportController@totalOrder')->name('report.total.order');
+        Route::get('pending/order/','ReportController@pendingOrder')->name('report.pending.order');
+        Route::get('design/','ReportController@ownDesign')->name('report.own.design');
+
+    });
+
+
+    Route::group(['prefix'=>'pdf'], function (){
+        Route::get('pdf/total/order/','PdfController@totalOrder')->name('pdf.total.order');
+        Route::get('pdf/pending/order/','PdfController@pendingOrder')->name('pdf.pending.order');
+        Route::get('pdf/design/','PdfController@ownDesign')->name('pdf.own.design');
 
     });
 
@@ -166,7 +202,10 @@ Route::group(['as'=>'customer.','prefix'=>'customer', 'namespace'=>'Customer', '
     Route::get('order/accept/{id}','CartController@orderAccept')->name('order.accept');
 
 
+    Route::group(['prefix'=>'pdf'], function (){
+        Route::get('pdf/invoice/{id}','PdfController@invoice')->name('pdf.invoice');
 
+    });
 
 });
 

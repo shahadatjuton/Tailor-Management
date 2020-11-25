@@ -38,6 +38,9 @@
             <div class="card">
               <div class="card-header">
                <h4>Order Details</h4>
+                  <div class="text-right">
+                      <a class="btn btn-info" href="{{route('customer.pdf.invoice',$order->id)}}"><i class="fa fa-file-pdf-o"></i> Export as PDF</a>
+                  </div>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-hover">

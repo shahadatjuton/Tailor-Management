@@ -38,8 +38,11 @@ class ProfileController extends Controller
             if (!Storage::disk('public')->exists('profile')){
                 Storage::disk('public')->makeDirectory('profile');
             }
-            if (Storage::disk('public')->exists('profile/'. $user->image )) {
-                Storage::disk('public')->delete('profile/'. $user->image );
+            if ($user->image !== "default.png"){
+
+                        if (Storage::disk('public')->exists('profile/'. $user->image )) {
+                            Storage::disk('public')->delete('profile/'. $user->image );
+                        }
             }
             $image_Size = Image::make($image)->resize(1600,1080)->save($image->getClientOriginalExtension());
             Storage::disk('public')->put('profile/'.$image_name,$image_Size);
