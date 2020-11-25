@@ -38,6 +38,9 @@
             <div class="card">
               <div class="card-header">
                <h4>Order Details</h4>
+                  <div class="text-right">
+                      <a class="btn btn-info" href="{{route('staff.pdf.invoice',$Order->id)}}"><i class="fa fa-file-pdf-o"></i> Export as PDF</a>
+                  </div>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-hover">
@@ -72,6 +75,7 @@
                     </tbody>
                 </table>
               </div><!-- /.card-body -->
+                @if($Order->status !== 4)
                 <div class="card-body">
                     <form action="{{route('staff.order.store')}}" method="post" id="createUser" enctype="multipart/form-data">
                         @csrf
@@ -80,17 +84,17 @@
                             <!-- /.form-group -->
                             <div class="form-group col-md-8 offset-2">
                                 <label>Select Delivery Date</label>
-                                <input type="date" name="date" class="form-control">
+                                <input type="date" name="date" class="form-control"  min="{{\Carbon\Carbon::now()}}">
                             </div>
                             <div class="form-group col-md-4 offset-5">
                                 <a href="{{route('staff.order.index')}}" class="btn btn-dark">Back</a>
                                 <button type="submit" class="btn btn-success">Create</button>
                             </div>
-
                         </div>
 
                     </form>
                 </div><!-- /.card-body -->
+                    @endif
             </div>
             <!-- /.card -->
             <!-- /.card -->

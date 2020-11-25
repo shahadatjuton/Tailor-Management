@@ -98,9 +98,11 @@
                             @endif
                         </td>
                         <td>
+                            @if($order->status !== 4)
                             <a href="{{route('admin.order.accept',$order->id)}}" class="btn btn-primary btn-sm" title="Accept">
                                 <i class="fas fa-check-circle"></i>
                             </a>
+                            @endif
                             <a href="{{route('admin.order.show',$order->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-eye"></i>
                             </a>

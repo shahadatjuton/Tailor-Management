@@ -30,7 +30,7 @@ class OrderController extends Controller
 
     public function deliveryDateStore(Request $request){
         $this->validate($request,[
-            'date'=>'required',
+            'date'=>'required|after:yesterday',
         ]);
 
         $order = \App\Order::find($request->order_id);

@@ -56,4 +56,13 @@ class PdfController extends Controller
         $pdf = PDF::loadView('admin.pdf.total_staff',$data);
         return $pdf->download('total_staff_report.pdf');
     }
+
+    public function invoice($id){
+        $data['order'] = Order::find($id);
+        $pdf = PDF::loadView('admin.pdf.invoice',$data);
+        return $pdf->download('invoice.pdf');
+    }
+
+
+
 }

@@ -82,29 +82,38 @@
                                     <p class="text-center">proposed Date</p>
                                 </div>
                             @elseif($order->status == 2)
-                                <div class="bg-success">
-                                    <p class="text-center">Accepted</p>
+                                <div class="bg-warning">
+                                    <p class="text-center">Updated</p>
                                 </div>
-                            @else
+                            @elseif($order->status == 3)
                                 <div class="bg-warning">
                                     <p class="text-center">Change Require</p>
+                                </div>
+                            @else
+                                <div class="bg-success">
+                                    <p class="text-center">Accepted</p>
                                 </div>
                             @endif
                         </td>
                         <td>
+                            @if($order->payment_status == 0)
                             <a href="{{route('customer.cart.payment',$order->id)}}" class="btn btn-primary btn-sm" title="Pay">
                                 Pay
                             </a>
-
+                            @endif
                             <a href="{{route('customer.cart.order.details',$order->id)}}" class="btn btn-primary btn-sm" title="View">
                                 <i class="fa fa-eye"></i>
                             </a>
+                                @if($order->status == 1)
                             <a href="{{route('customer.order.accept',$order->id)}}" class="btn btn-success btn-sm" title="Accept">
                                 <i class="fas fa-check-circle"></i>
                             </a>
+                                @endif
+                                @if($order->status !== 4)
                             <a href="{{route('customer.order.destroy',$order->id)}}" class="btn btn-danger btn-sm" title="Delete">
                                 <i class="fa fa-trash"></i>
                             </a>
+                                @endif
                         </td>
                     </tr>
                         @endforeach

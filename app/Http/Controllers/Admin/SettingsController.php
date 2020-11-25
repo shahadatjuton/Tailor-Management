@@ -101,5 +101,20 @@ class SettingsController extends Controller
         return redirect()->back();
     }
 
+    public function active($id){
+        $slider = Setting::find($id);
+        $slider->status = 1;
+        $slider->save();
+        Toastr::success('Slider is Activated','successful!');
+        return redirect()->route('admin.slider.list');
+    }
+
+    public  function inactive($id){
+        $slider = Setting::find($id);
+        $slider->status = 0;
+        $slider->save();
+        Toastr::success('Slider is Inactivated','successful!');
+        return redirect()->route('admin.slider.list');
+    }
 
 }

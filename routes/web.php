@@ -118,6 +118,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::get('pdf/pending/design/','PdfController@pendingDesign')->name('pdf.pending.design');
         Route::get('pdf/total/staff/','PdfController@totalStaff')->name('pdf.total.staff');
 
+        Route::get('pdf/invoice/{id}','PdfController@invoice')->name('pdf.invoice');
+
+
     });
 
     Route::group(['prefix'=>'settings'], function (){
@@ -127,6 +130,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::get('slider/edit/{id}','SettingsController@sliderEdit')->name('slider.edit');
         Route::put('slider/update/{id}','SettingsController@sliderUpdate')->name('slider.update');
         Route::delete('delete/slider/{id}','SettingsController@sliderDestroy')->name('slider.destroy');
+
+        Route::get('slider/status/{id}','SettingsController@active')->name('slider.active');
+        Route::get('/status/slider/{id}','SettingsController@inactive')->name('slider.inactive');
+
     });
 
 });
@@ -173,6 +180,9 @@ Route::group(['as'=>'staff.','prefix'=>'staff', 'namespace'=>'Staff', 'middlewar
         Route::get('pdf/total/order/','PdfController@totalOrder')->name('pdf.total.order');
         Route::get('pdf/pending/order/','PdfController@pendingOrder')->name('pdf.pending.order');
         Route::get('pdf/design/','PdfController@ownDesign')->name('pdf.own.design');
+
+        Route::get('pdf/invoice/{id}','PdfController@invoice')->name('pdf.invoice');
+
 
     });
 

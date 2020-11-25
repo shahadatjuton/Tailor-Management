@@ -64,7 +64,7 @@
                         <td>{{$dress->title}}</td>
                         <td>{{$dress->description}}</td>
                         <td>{{$dress->price}}</td>
-                        <td>{{$dress->created_by}}</td>
+                        <td>{{$dress->user->name}}</td>
                         <td>{{$dress->created_at->toDateString()}}</td>
                         <td>
                             <a href="{{route('admin.dress.show',$dress->id)}}" class="btn btn-primary btn-sm" title="Edit">

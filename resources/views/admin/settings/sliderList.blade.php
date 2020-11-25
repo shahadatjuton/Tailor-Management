@@ -37,7 +37,7 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-               <h4>Dress List</h4>
+               <h4>Slider List</h4>
                   <a class="btn btn-success btn-sm float-right " href="{{route('admin.slider.create')}}">
                       <i class="fa fa-plus-circle"> Create Slider</i>
                   </a>
@@ -63,12 +63,17 @@
                         <td>{{$slider->description}}</td>
                         <td>
                             @if($slider->status == 0)
-                                <p class="bg-danger">Inactive</p>
+                                <p class="bg-danger" href="{{route('admin.slider.active',$slider->id)}}">Inactive</p>
                             @else
-                                 <p class="bg-success">Active</p>
+                                 <p class="bg-success" href="{{route('admin.slider.inactive',$slider->id)}}">Active</p>
                             @endif
                         </td>
                         <td>
+                            @if($slider->status == 1)
+                                <a class="btn btn-danger btn-sm" href="{{route('admin.slider.inactive',$slider->id)}}">Inactive</a>
+                            @else
+                                <a class="btn btn-success btn-sm" href="{{route('admin.slider.active',$slider->id)}}">Active</a>
+                            @endif
                             <a href="{{route('admin.slider.edit',$slider->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>

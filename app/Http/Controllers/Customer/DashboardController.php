@@ -18,7 +18,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $orders = Auth::user()->orders()->get();
-        $user_info =  Auth::user()->userInfo->count();
+        $user_info =  Auth::user()->userInfos->count();
         return view('customer.dashboard',compact('user_info','orders'));
     }
 

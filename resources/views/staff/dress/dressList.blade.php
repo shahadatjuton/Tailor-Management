@@ -65,7 +65,7 @@
                         <td>{{$dress->title}}</td>
                         <td>{{Str::limit($dress->description,30)}}</td>
                         <td>{{$dress->price}}</td>
-                        <td>{{$dress->created_by}}</td>
+                        <td>{{$dress->user->name}}</td>
                         <td>{{$dress->created_at->toDateString()}}</td>
                         <td>
                             @if($dress->status == 0)

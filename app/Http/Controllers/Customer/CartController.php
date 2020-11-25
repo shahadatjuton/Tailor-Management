@@ -139,7 +139,7 @@ class CartController extends Controller
 
     }
     public function orderList(){
-        $orders = Auth::user()->orders;
+        $orders = Order::where('user_id',Auth::id())->latest()->get();
         return view('customer.orderList',compact('orders'));
     }
 
@@ -152,7 +152,6 @@ class CartController extends Controller
     public function payment($id){
         $order = Order::find($id);
         return view('customer.payment',compact('order'));
-
     }
 
     public function paymentStore(Request $request){

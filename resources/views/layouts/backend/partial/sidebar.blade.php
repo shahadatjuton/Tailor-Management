@@ -44,7 +44,7 @@
 
                 <li class="nav-item has-treeview {{($prefix == "admin/user")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/user")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-users"></i>
                         <p>
                             User Management
                             <i class="right fas fa-angle-left"></i>
@@ -67,7 +67,7 @@
                 </li>
                 <li class="nav-item has-treeview {{($prefix == "admin/category")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/category")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-th"></i>
                         <p>
                             Category Management
                             <i class="right fas fa-angle-left"></i>
@@ -90,7 +90,7 @@
                 </li>
                 <li class="nav-item has-treeview {{($prefix == "admin/tag")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/tag")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-tags"></i>
                         <p>
                             Tag Management
                             <i class="right fas fa-angle-left"></i>
@@ -113,7 +113,7 @@
                 </li>
                 <li class="nav-item has-treeview {{($prefix == "admin/dress")?'menu-open':''}}">
                     <a href="#" class="nav-link {{($prefix == "admin/dress")?'active':''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-universal-access"></i>
                         <p>
                             Dress Management
                             <i class="right fas fa-angle-left"></i>
@@ -142,7 +142,7 @@
                 </li>
                     <li class="nav-item has-treeview {{($prefix == "order")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "order")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-luggage-cart"></i>
                             <p>
                                 Order Management
                                 <i class="right fas fa-angle-left"></i>
@@ -157,32 +157,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
-                        <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Profile
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Profile</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p> Change Password</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-item has-treeview {{($prefix == "settings")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "settings")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-cogs"></i>
                             <p>
                                 Settings
                                 <i class="right fas fa-angle-left"></i>
@@ -203,13 +180,37 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
+                        <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
+                            <i class="fas fa-user-circle"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('profile.view')}}" class="nav-link {{($route == "profile.view")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('profile.newPassword')}}" class="nav-link {{($route == "profile.newPassword")?'active':''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> Change Password</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
+                    {{--============================    Staff  =======================================================--}}
 
                 @elseif(Auth::user()->role_id == 2)
 {{--                Staff--}}
                     <li class="nav-item has-treeview {{($prefix == "staff/dress")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "staff/dress")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-universal-access"></i>
                             <p>
                                 Dress Management
                                 <i class="right fas fa-angle-left"></i>
@@ -232,7 +233,7 @@
                     </li>
                     <li class="nav-item has-treeview {{($prefix == "staff/order")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "staff/order")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-luggage-cart"></i>
                             <p>
                                 Order Management
                                 <i class="right fas fa-angle-left"></i>
@@ -249,7 +250,7 @@
                     </li>
                     <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-user-circle"></i>
                             <p>
                                 Profile
                                 <i class="right fas fa-angle-left"></i>
@@ -266,12 +267,12 @@
                     </li>
 
 
-                    {{--    ====================== Customer =================================================--}}
+{{--    ============================================================= Customer =================================================--}}
 
                 @elseif(Auth::user()->role_id == 3)
                     <li class="nav-item has-treeview {{($prefix == "order")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "order")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-luggage-cart"></i>
                             <p>
                                 Order Management
                                 <i class="right fas fa-angle-left"></i>
@@ -288,7 +289,7 @@
                     </li>
                     <li class="nav-item has-treeview {{($prefix == "profile")?'menu-open':''}}">
                         <a href="#" class="nav-link {{($prefix == "profile")?'active':''}}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="fas fa-user-circle"></i>
                             <p>
                                 Profile
                                 <i class="right fas fa-angle-left"></i>

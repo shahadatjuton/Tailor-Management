@@ -27,4 +27,12 @@ class PdfController extends Controller
         $pdf = PDF::loadView('staff.pdf.own_design',$data);
         return $pdf->download('own_design_report.pdf');
     }
+
+    public function invoice($id){
+        $data['order'] = Order::find($id);
+        $pdf = PDF::loadView('staff.pdf.invoice',$data);
+        return $pdf->download('invoice.pdf');
+    }
+
+
 }

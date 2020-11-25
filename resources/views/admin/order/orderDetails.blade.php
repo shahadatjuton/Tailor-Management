@@ -38,6 +38,9 @@
             <div class="card">
               <div class="card-header">
                <h4>Order Details</h4>
+                  <div class="text-right">
+                      <a class="btn btn-info" href="{{route('admin.pdf.invoice',$Order->id)}}"><i class="fa fa-file-pdf-o"></i> Export as PDF</a>
+                  </div>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-hover">
@@ -88,6 +91,7 @@
                     </tbody>
                 </table>
               </div><!-- /.card-body -->
+                @if($Order->status !== 4)
                 <div class="card-body">
                     <form action="{{route('admin.order.store')}}" method="post" id="createUser" enctype="multipart/form-data">
                         @csrf
@@ -107,6 +111,7 @@
 
                     </form>
                 </div><!-- /.card-body -->
+                    @endif
             </div>
             <!-- /.card -->
             <!-- /.card -->
