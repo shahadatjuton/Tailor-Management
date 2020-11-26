@@ -110,9 +110,11 @@
                             </a>
                                 @endif
                                 @if($order->status !== 4)
+                                    @if($order->payment_status == 0)
                             <a href="{{route('customer.order.destroy',$order->id)}}" class="btn btn-danger btn-sm" title="Delete">
                                 <i class="fa fa-trash"></i>
                             </a>
+                                        @endif
                                 @endif
                         </td>
                     </tr>

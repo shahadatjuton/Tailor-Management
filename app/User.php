@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\UserInfo');
     }
     public function userInfos(){
-        return $this->hasMany('App\UserInfo');
+        return $this->hasMany('App\UserInfo','user_id');
     }
     public function orders(){
         return $this->hasMany('App\Order');

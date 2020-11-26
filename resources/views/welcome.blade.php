@@ -9,9 +9,9 @@
                 <div class="hs-left"><img src="{{asset('storage/slider/'.$slider->image)}}" alt="{{$slider->title}}"></div>
                 <div class="hs-right">
                     <div class="hs-content">
-                        <div class="price">{{$slider->title}}</div>
-                        <h2>{{$slider->description}}</h2>
-                        <p class="site-btn">Shop NOW!</p>
+                        <div class="price ml-4">{{$slider->title}}</div>
+                        <br><br>
+                        <h2 class="ml-4">{{$slider->description}}</h2>
                     </div>
                 </div>
             </div>

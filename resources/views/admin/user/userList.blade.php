@@ -49,6 +49,7 @@
                         <th>SL No</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Created at</th>
                         <th>Action</th>
                     </tr>
@@ -59,8 +60,12 @@
                         <td>{{$key +1}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->role->role_name}}</td>
                         <td>{{$user->created_at}}</td>
                         <td>
+                            <a href="{{route('admin.user.show',$user->id)}}" class="btn btn-primary btn-sm" title="Edit">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-primary btn-sm" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a>

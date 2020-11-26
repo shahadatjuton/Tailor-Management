@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!-- logo -->
             <div class="site-logo">
-                <h2>Taylor Shop Management</h2>
+                <h2>Taylor  Management</h2>
             </div>
             <!-- responsive -->
             <div class="nav-switch">

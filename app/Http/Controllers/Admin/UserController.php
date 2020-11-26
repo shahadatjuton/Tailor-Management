@@ -116,6 +116,11 @@ class UserController extends Controller
         Toastr::success('User Updated successfully!','Success');
         return redirect()->route('admin.user.index');
     }
+    public function show($id){
+        $user = User::findOrFail($id);
+        $user_infos =  $user->userInfos->first();
+        return view('admin.user.showUser',compact('user','user_infos'));
+    }
     public function destroy($id){
         $user = User::findOrFail($id);
         $user->delete();

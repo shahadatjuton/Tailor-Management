@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-8 col-sm-12">
                 <div class="footer-widget about-widget">
-                    <h4 class="fw-title">Tailor Management System</h4>
+                    <h4 class="fw-title">Tailor Management </h4>
                     <p>Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam fringilla faucibus urna, id dapibus erat iaculis ut. Integer ac sem.</p>
                     <div class="cards">
                         <img src="{{asset('assets/frontend/')}}/img/cards/5.png" alt="">
@@ -41,7 +41,7 @@
                 <div class="footer-widget">
                     <h6 class="fw-title">Contact</h6>
                     <div class="text-box">
-                        <p>Taylor Shop Management </p>
+                        <p>Taylor Management </p>
                         <p>Dhaka </p>
                         <p>+880123456789</p>
                         <p>managementtailor@gmail.com</p>

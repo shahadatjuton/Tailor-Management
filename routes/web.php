@@ -47,6 +47,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::post('store','UserController@store')->name('user.store');
         Route::get('edit/{id}','UserController@edit')->name('user.edit');
         Route::put('update/{id}','UserController@update')->name('user.update');
+        Route::get('show/{id}','UserController@show')->name('user.show');
         Route::delete('destroy/{id}','UserController@destroy')->name('user.destroy');
     });
     Route::group(['prefix'=>'category'], function (){

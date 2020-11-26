@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Dress;
 use App\Http\Controllers\Controller;
 use App\Setting;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -47,7 +45,7 @@ class SettingsController extends Controller
 
         $slider = new Setting();
         $slider->title = $request->title;
-        $slider->description = $request->title;
+        $slider->description = $request->description;
         $slider->image = $image_name;
         $slider->status = 1;
         $slider->save();
@@ -85,7 +83,7 @@ class SettingsController extends Controller
         }
 
         $slider->title = $request->title;
-        $slider->description = $request->title;
+        $slider->description = $request->description;
         $slider->image = $image_name;
         $slider->status = 1;
         $slider->save();
