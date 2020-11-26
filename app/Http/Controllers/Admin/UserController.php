@@ -64,7 +64,7 @@ class UserController extends Controller
         $user->image = $image_name;
         $user->save();
         Toastr::success('User created successfully!','Success');
-        return redirect()->route('admin.user.list');
+        return redirect()->route('admin.user.index');
     }
 
     public function edit($id){
@@ -114,12 +114,12 @@ class UserController extends Controller
         $user->image = $image_name;
         $user->save();
         Toastr::success('User Updated successfully!','Success');
-        return redirect()->route('admin.user.list');
+        return redirect()->route('admin.user.index');
     }
     public function destroy($id){
         $user = User::findOrFail($id);
         $user->delete();
         Toastr::success('The data is deleted successfully!','Success!');
-        return redirect()->route('admin.user.list');
+        return redirect()->route('admin.user.index');
     }
 }

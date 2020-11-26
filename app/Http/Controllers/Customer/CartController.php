@@ -164,9 +164,9 @@ class CartController extends Controller
 
         $charge =  Stripe\Charge::create ([
 
-            "amount" => $order->total_amount * 86,
+            "amount" => $order->total_amount * 100,
 
-            "currency" => "usd",
+            "currency" => "BDT",
 
            "source" => $request->stripeToken,
 

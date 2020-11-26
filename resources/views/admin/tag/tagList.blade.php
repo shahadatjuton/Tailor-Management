@@ -58,7 +58,7 @@
                     <tr>
                         <td>{{$key +1}}</td>
                         <td>{{$tag->name}}</td>
-                        <td>{{$tag->created_by}}</td>
+                        <td>{{$tag->user->name}}</td>
                         <td>{{$tag->created_at->toDateString()}}</td>
                         <td>
                             <a href="{{route('admin.tag.edit',$tag->id)}}" class="btn btn-primary btn-sm" title="Edit">

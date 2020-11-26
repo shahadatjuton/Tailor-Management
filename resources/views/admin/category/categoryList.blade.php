@@ -58,7 +58,7 @@
                     <tr>
                         <td>{{$key +1}}</td>
                         <td>{{$category->name}}</td>
-                        <td>{{$category->created_by}}</td>
+                        <td>{{$category->user->name}}</td>
                         <td>{{$category->created_at->toDateString()}}</td>
                         <td>
                             <a href="{{route('admin.category.edit',$category->id)}}" class="btn btn-primary btn-sm" title="Edit">
